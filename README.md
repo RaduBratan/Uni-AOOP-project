@@ -19,7 +19,7 @@ This is my submission for the 2022 Advanced Object Oriented Programming course's
   * add review for game
   * see reviews I submitted to games
 - Enter developer account (requires password)
-  * see reviews for my game
+  * see reviews for my games
 
 2. Use at least 8 classes (I created 10):
 - Game
