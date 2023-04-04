@@ -22,15 +22,15 @@ This is my submission for the 2022 Advanced Object Oriented Programming course's
   * see reviews for my game (as developer)
 
 2. Use at least 8 classes (I created 10):
-- People.Admin
-- Games
+- Game
 - GameFactory
-- People.Developers
-- DeveloperFactory
-- People.Users
-- UserFactory
-- Reviews
+- Review
 - ReviewFactory
+- User
+- UserFactory
+- Developer
+- DeveloperFactory
+- Admin
 - Main
 
 ### Documentation
