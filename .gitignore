@@ -8,7 +8,6 @@ classes/
 projectFilesBackup/
 project.properties
 .idea
-*.iml
 *.iws
 *.swp
 .cxx
