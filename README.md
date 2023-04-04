@@ -1,4 +1,4 @@
-# Game reviews app
+# Games reviews app
 
 ### Description
 This is my submission for the 2022 Advanced Object Oriented Programming course's project at UniBuc FMI.
@@ -22,14 +22,14 @@ This is my submission for the 2022 Advanced Object Oriented Programming course's
   * see reviews for my game (as developer)
 
 2. Use at least 8 classes (I created 10):
-- Admin
-- Game
+- People.Admin
+- Games
 - GameFactory
-- Developer
+- People.Developers
 - DeveloperFactory
-- User
+- People.Users
 - UserFactory
-- Review
+- Reviews
 - ReviewFactory
 - Main
 

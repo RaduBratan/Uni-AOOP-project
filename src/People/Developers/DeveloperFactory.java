@@ -1,4 +1,4 @@
-package Developer;
+package People.Developers;
 
 public class DeveloperFactory {
 }
