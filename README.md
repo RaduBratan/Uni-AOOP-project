@@ -1,7 +1,7 @@
 # Game reviews app
 
 ### Description
-This is my submission for the 2022 Advanced Object-Oriented Programming course's project at UniBuc FMI.
+This is a project I created for my Advanced Object-Oriented Programming class at UniBuc FMI.
 
 ### Requirements
 #### Have at least 10 actions (I created 14):
