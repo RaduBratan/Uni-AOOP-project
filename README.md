@@ -16,22 +16,26 @@ This is a project I created for my Advanced Object-Oriented Programming class at
 - Create user account
 - Create developer account
 - Enter user account (requires password)
-    * add review for game
-      * see reviews I submitted to games
+  * add review for game
+  * see reviews I submitted to games
 - Enter developer account (requires password)
-    * see reviews for my games
+  * see reviews for my games
 
-#### Use at least 8 classes (I created 10):
-1. Game
+#### Use at least 8 classes (I created 14):
+1. GameData
 2. GameFactory
-3. Review
-4. ReviewFactory
-5. User
-6. UserFactory
-7. Developer
-8. DeveloperFactory
-9. Admin
-10. Main
+3. GameEntity
+4. ReviewData
+5. ReviewFactory
+6. ReviewEntity
+7. UserData
+8. UserFactory
+9. UserEntity
+10. DeveloperData
+11. DeveloperFactory
+12. DeveloperEntity
+13. Admin
+14. Main
 
 ### Documentation
 See any relevant documentation inside the source code via all the comments I wrote.
