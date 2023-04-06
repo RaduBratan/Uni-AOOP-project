@@ -1,6 +1,6 @@
 package People.Developers;
 
-import Games.Game;
+import Games.GameData;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,10 +11,10 @@ public class DeveloperData {
     private final int devId;
     private String name, email, password, cnp, phone;
     private Date birthDate;
-    private Address address;
-    private Game game;
+    private AddressData addressData;
+    private GameData gameData;
 
-    public DeveloperData(int devId, String name, String email, String password, String cnp, String phone, Date birthDate, Address address, Game game) {
+    public DeveloperData(int devId, String name, String email, String password, String cnp, String phone, Date birthDate, AddressData addressData, GameData gameData) {
         this.devId = devId;
         this.name = name;
         this.email = email;
@@ -22,8 +22,8 @@ public class DeveloperData {
         this.cnp = cnp;
         this.phone = phone;
         this.birthDate = birthDate;
-        this.address = address;
-        this.game = game;
+        this.addressData = addressData;
+        this.gameData = gameData;
     }
 
     public DeveloperData(int devId, Scanner in) throws ParseException {
@@ -45,7 +45,7 @@ public class DeveloperData {
         System.out.println("Your date of birth (in yyyy-mm-dd format): ");
         this.birthDate = new SimpleDateFormat("yyyy-mm-dd").parse(in.nextLine());
         System.out.println("Your address: ");
-        this.address = new Address(in);
+        this.addressData = new AddressData(in);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class DeveloperData {
                 "\n" +
                 " birthDate=" + (new SimpleDateFormat("yyyy-mm-dd")).format(birthDate) + ", " +
                 "\n" +
-                " address=" + address.toString() +
+                " address=" + addressData.toString() +
                 "}";
     }
 
@@ -116,10 +116,10 @@ public class DeveloperData {
         this.birthDate = birthDate;
     }
 
-    public Address getAddress() {
-        return address;
+    public AddressData getAddress() {
+        return addressData;
     }
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddress(AddressData addressData) {
+        this.addressData = addressData;
     }
 }

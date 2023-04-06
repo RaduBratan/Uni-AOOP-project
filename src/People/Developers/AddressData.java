@@ -2,11 +2,11 @@ package People.Developers;
 
 import java.util.Scanner;
 
-public class Address {
+public class AddressData {
     private String state, county, city, street;
     private int postalCode;
 
-    public Address(String state, String county, String city, String street, int postalCode) {
+    public AddressData(String state, String county, String city, String street, int postalCode) {
         this.state = state;
         this.county = county;
         this.city = city;
@@ -14,7 +14,7 @@ public class Address {
         this.postalCode = postalCode;
     }
 
-    public Address(Scanner in) {
+    public AddressData(Scanner in) {
         this.read(in);
     }
 
