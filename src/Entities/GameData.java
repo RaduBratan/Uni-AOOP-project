@@ -1,4 +1,4 @@
-package Games;
+package Entities;
 
 import java.util.*;
 
@@ -9,7 +9,7 @@ public class GameData {
 
     public GameData(int gameId, int devId, String gameName, String devName, String genre, String price, String downloads, String averageCompletionTime, String description) {
         this.gameId = gameId;
-        this.devId = devId;
+        this.devId = DeveloperData.devId;
         this.gameName = gameName;
         this.devName = devName;
         this.genre = genre;

@@ -1,4 +1,4 @@
-package Reviews;
+package Entities;
 
 public class ReviewFactory {
 }

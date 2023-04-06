@@ -1,58 +1,47 @@
-package People.Developers;
+package Entities;
 
-import Games.GameData;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
-public class DeveloperData {
+public class UserData {
 
-    private final int devId;
-    private String name, email, password, cnp, phone;
+    private final int userId;
+    private String name, email, password, phone;
     private Date birthDate;
-    private AddressData addressData;
-    private GameData gameData;
 
-    public DeveloperData(int devId, String name, String email, String password, String cnp, String phone, Date birthDate, AddressData addressData, GameData gameData) {
-        this.devId = devId;
+    public UserData(int userId, String name, String email, String password, String phone, Date birthDate) {
+        this.userId = userId;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.cnp = cnp;
         this.phone = phone;
         this.birthDate = birthDate;
-        this.addressData = addressData;
-        this.gameData = gameData;
     }
 
-    public DeveloperData(int devId, Scanner in) throws ParseException {
-        this.devId = devId;
+    public UserData(int userId, Scanner in) throws ParseException {
+        this.userId = userId;
         this.read(in);
     }
 
     public void read(Scanner in) throws ParseException {
-        System.out.println("Your name: ");
+        System.out.println("Your full name: ");
         this.name = in.nextLine();
         System.out.println("Your email address: ");
         this.email = in.nextLine();
         System.out.println("Your password: ");
         this.password = in.nextLine();
-        System.out.println("Your CNP: ");
-        this.cnp = in.nextLine();
         System.out.println("Your phone number: ");
         this.phone = in.nextLine();
         System.out.println("Your date of birth (in yyyy-mm-dd format): ");
         this.birthDate = new SimpleDateFormat("yyyy-mm-dd").parse(in.nextLine());
-        System.out.println("Your address: ");
-        this.addressData = new AddressData(in);
     }
 
     @Override
     public String toString() {
         return "{" +
                 "\n" +
-                " devId=" + devId + "', " +
+                " userId=" + userId + "', " +
                 "\n" +
                 " name='" + name + "', " +
                 "\n" +
@@ -60,18 +49,15 @@ public class DeveloperData {
                 "\n" +
                 " password='" + password + "', " +
                 "\n" +
-                " cnp='" + cnp + "', " +
-                "\n" +
                 " phone='" + phone + "', " +
                 "\n" +
                 " birthDate=" + (new SimpleDateFormat("yyyy-mm-dd")).format(birthDate) + ", " +
                 "\n" +
-                " address=" + addressData.toString() +
                 "}";
     }
 
-    public int getDeveloperId() {
-        return devId;
+    public int getUserId() {
+        return userId;
     }
 
     public String getName() {
@@ -95,13 +81,6 @@ public class DeveloperData {
         this.password = password;
     }
 
-    public String getCNP() {
-        return cnp;
-    }
-    public void setCNP(String cnp) {
-        this.cnp = cnp;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -114,12 +93,5 @@ public class DeveloperData {
     }
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
-    }
-
-    public AddressData getAddress() {
-        return addressData;
-    }
-    public void setAddress(AddressData addressData) {
-        this.addressData = addressData;
     }
 }

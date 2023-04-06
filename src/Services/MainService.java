@@ -1,4 +1,4 @@
-package Reviews;
+package Services;
 
 public class MainService {
 }
