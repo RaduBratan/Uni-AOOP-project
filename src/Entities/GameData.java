@@ -1,4 +1,4 @@
-package Games;
+package Entities;
 
 import java.util.*;
 
@@ -6,10 +6,12 @@ public class GameData {
 
     private final int gameId, devId;
     private String gameName, devName, genre, price, downloads, averageCompletionTime, description;
+    protected List<ReviewData> reviews = new ArrayList<>();
+    private final ReviewFactory reviewFactory = new ReviewFactory();
 
     public GameData(int gameId, int devId, String gameName, String devName, String genre, String price, String downloads, String averageCompletionTime, String description) {
         this.gameId = gameId;
-        this.devId = devId;
+        this.devId = DeveloperData.devId;
         this.gameName = gameName;
         this.devName = devName;
         this.genre = genre;
@@ -40,7 +42,7 @@ public class GameData {
         return gameId;
     }
 
-    public int getDevId() {
+    public int getDeveloperId() {
         return devId;
     }
 
@@ -48,7 +50,7 @@ public class GameData {
         return gameName;
     }
 
-    public String getDevName() {
+    public String getDeveloperName() {
         return devName;
     }
 

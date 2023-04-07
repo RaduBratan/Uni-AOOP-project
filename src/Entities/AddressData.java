@@ -1,4 +1,4 @@
-package People.Developers;
+package Entities;
 
 import java.util.Scanner;
 

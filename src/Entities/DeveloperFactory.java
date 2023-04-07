@@ -1,4 +1,4 @@
-package People.Developers;
+package Entities;
 
 import java.text.ParseException;
 import java.util.Scanner;
@@ -10,7 +10,7 @@ public class DeveloperFactory {
         DeveloperFactory.uniqueId += i;
     }
 
-    public DeveloperData createDeveloperData(Scanner in) throws ParseException {
+    public DeveloperData createDeveloper(Scanner in) throws ParseException {
         return new DeveloperData(uniqueId++, in);
     }
 }
