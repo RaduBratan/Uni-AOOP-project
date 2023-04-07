@@ -11,7 +11,7 @@ public class GameData {
 
     public GameData(int gameId, int devId, String gameName, String devName, String genre, String price, String downloads, String averageCompletionTime, String description) {
         this.gameId = gameId;
-        this.devId = DeveloperData.devId;
+        this.devId = devId;
         this.gameName = gameName;
         this.devName = devName;
         this.genre = genre;

@@ -48,7 +48,6 @@ public class Main {
             System.out.println((i + 1) + ". " + commandDescs.get(i) + " (" + commandNos.get(i) + ")");
     }
 
-
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         boolean end = false;
