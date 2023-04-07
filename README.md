@@ -4,37 +4,33 @@
 This is a project I created for my Advanced Object-Oriented Programming class at UniBuc FMI.
 
 ### Requirements
-#### Have at least 10 actions (I created 14):
-- Enter admin account (requires password)
-  * add game
-  * add user
-  * add developer
-  * view all games
-  * view all users
-  * view all developers
-  * add review for game
-- Create user account
-- Create developer account
-- Enter user account (requires password)
-  * add review for game
-  * see reviews I submitted to games
-- Enter developer account (requires password)
-  * see reviews for my games
+
+#### Have at least 10 actions:
+- create developer account
+- create user account
+- show developer account
+- show user account
+- add game to dev
+- add review to game
+- show all games of dev
+- show all reviews of game
+- remove offensive game of dev
+- remove offensive review of game
 
 #### Use at least 8 classes (I created 14):
 1. GameData
 2. GameFactory
-3. GameEntity
+3. GameObject
 4. ReviewData
 5. ReviewFactory
-6. ReviewEntity
+6. ReviewObject
 7. UserData
 8. UserFactory
-9. UserEntity
+9. UserObject
 10. DeveloperData
 11. DeveloperFactory
-12. DeveloperEntity
-13. Admin
+12. DeveloperObject
+13. MainService
 14. Main
 
 ### Documentation
