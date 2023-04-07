@@ -2,7 +2,9 @@ package Entities;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class DeveloperData {
@@ -47,6 +49,14 @@ public class DeveloperData {
         this.addressData = new AddressData(in);
     }
 
+    public List<GameData> filterGames(List<GameData> allGames) {
+        var games = new ArrayList<GameData>();
+        for (var game : allGames)
+            if (game.getDeveloperId() == this.getDeveloperId())
+                games.add(game);
+        return games;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -69,6 +79,14 @@ public class DeveloperData {
                 "}";
     }
 
+    /*public boolean comparePasswords(int typedId, String typedPassword) {
+        if (typedId == this.getDeveloperId())
+            if (typedPassword == this.getPassword()) {
+                return true;
+            }
+        return false;
+    }*/
+
     public int getDeveloperId() {
         return devId;
     }
@@ -76,6 +94,7 @@ public class DeveloperData {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -83,6 +102,7 @@ public class DeveloperData {
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -90,6 +110,7 @@ public class DeveloperData {
     public String getPassword() {
         return password;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
@@ -97,6 +118,7 @@ public class DeveloperData {
     public String getCNP() {
         return cnp;
     }
+
     public void setCNP(String cnp) {
         this.cnp = cnp;
     }
@@ -104,6 +126,7 @@ public class DeveloperData {
     public String getPhone() {
         return phone;
     }
+
     public void setPhone(String phone) {
         this.phone = phone;
     }
@@ -111,6 +134,7 @@ public class DeveloperData {
     public Date getBirthDate() {
         return birthDate;
     }
+
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
@@ -118,6 +142,7 @@ public class DeveloperData {
     public AddressData getAddress() {
         return addressData;
     }
+
     public void setAddress(AddressData addressData) {
         this.addressData = addressData;
     }

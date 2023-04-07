@@ -10,7 +10,7 @@ public class UserFactory {
         UserFactory.uniqueId += i;
     }
 
-    public UserData createUserData(Scanner in) throws ParseException {
+    public UserData createUser(Scanner in) throws ParseException {
         return new UserData(uniqueId++, in);
     }
 }
