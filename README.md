@@ -10,8 +10,8 @@ This is a project I created for my Advanced Object-Oriented Programming class at
 - show user account
 - add game to dev
 - add review to game
-- show all games of dev
-- show all reviews of game
+- show game of dev
+- show review of game
 - remove offensive game of dev
 - remove offensive review of game
 
