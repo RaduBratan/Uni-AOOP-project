@@ -12,7 +12,8 @@ public class MainService {
     private List<GameData> games = new ArrayList<>();
     private List<ReviewData> reviews = new ArrayList<>();
 
-    // private final Map<String, GameData> gamesMap = new HashMap<>();
+    private final Map<String, GameData> gamesMap = new HashMap<>();
+    private final Map<Integer, ReviewData> reviewsMap = new HashMap<>();
     private final DeveloperFactory developerFactory = new DeveloperFactory();
     private final UserFactory userFactory = new UserFactory();
     private final GameFactory gameFactory = new GameFactory();
@@ -58,7 +59,7 @@ public class MainService {
         System.out.println("Contul de dezvoltator a fost creat");
     }
 
-    private DeveloperData getDeveloper(Scanner in) throws Exception {
+    private DeveloperData getDeveloperFromId(Scanner in) throws Exception {
         if (this.developers.size() == 0)
             throw new Exception("Nu există dezvoltatori");
         if (this.developers.size() == 1)
@@ -71,7 +72,7 @@ public class MainService {
     }
 
     public void showDeveloper(Scanner in) throws Exception {
-        var developer = this.getDeveloper(in);
+        var developer = this.getDeveloperFromId(in);
         System.out.println(developer.toString());
     }
 
@@ -81,7 +82,7 @@ public class MainService {
         System.out.println("Contul de utilizator a fost creat");
     }
 
-    private UserData getUser(Scanner in) throws Exception {
+    private UserData getUserFromId(Scanner in) throws Exception {
         if (this.users.size() == 0)
             throw new Exception("Nu există utilizatori");
         if (this.users.size() == 1)
@@ -94,12 +95,12 @@ public class MainService {
     }
 
     public void showUser(Scanner in) throws Exception {
-        var user = this.getUser(in);
+        var user = this.getUserFromId(in);
         System.out.println(user.toString());
     }
 
     public void addGame(Scanner in) throws Exception {
-        var developer = this.getDeveloper(in);
+        var developer = this.getDeveloperFromId(in);
         System.out.println("Numele jocului: ");
         String gameName = in.nextLine();
         System.out.println("Numele dezvoltatorului: ");
@@ -119,7 +120,7 @@ public class MainService {
         System.out.println("Jocul a fost adăugat");
     }
 
-    private GameData getGame(Scanner in) throws Exception {
+    private GameData getGameFromId(Scanner in) throws Exception {
         if (this.games.size() == 0)
             throw new Exception("Nu există jocuri");
         if (this.games.size() == 1)
@@ -132,13 +133,36 @@ public class MainService {
     }
 
     public void showGame(Scanner in) throws Exception {
-        var game = this.getGame(in);
+        var game = this.getGameFromId(in);
         System.out.println(game.toString());
     }
 
+    private GameData getGameFromDev(Scanner in, DeveloperData developer) throws Exception {
+        List<GameData> devGames = developer.filterGames(this.games);
+        System.out.println("Jocurile dezvoltatorului: " + devGames);
+        System.out.println("Alege numele jocului: ");
+        var gameName = in.nextLine();
+        if (!this.gamesMap.containsKey(gameName))
+            throw new Exception("Acesta nu este un nume valid");
+        var game = gamesMap.get(gameName);
+        if (game.getDeveloperId() != developer.getDeveloperId())
+            throw new Exception("Acest joc nu a fost creat de acest dezvoltator");
+        return game;
+    }
+
+    public void removeGame(Scanner in) throws Exception {
+        var developer = this.getDeveloperFromId(in);
+        var game = this.getGameFromDev(in, developer);
+        if (developer.filterGames(this.games).size() <= 1)
+            throw new Exception("Acest dezvoltator nu are jocuri");
+        this.gamesMap.remove(game.getGameName());
+        this.games.remove(game);
+        System.out.println("Jocul ofensiv a fost eliminat");
+    }
+
     public void addReview(Scanner in) throws Exception {
-        var user = this.getUser(in);
-        var game = this.getGame(in);
+        var user = this.getUserFromId(in);
+        var game = this.getGameFromId(in);
         System.out.println("Recenzia ta: ");
         String reviewText = in.nextLine();
         ReviewData newReview = this.reviewFactory.addReview(user.getUserId(), game.getGameId(), reviewText);
@@ -146,7 +170,7 @@ public class MainService {
         System.out.println("Recenzia a fost adăugată");
     }
 
-    private ReviewData getReview(Scanner in) throws Exception {
+    private ReviewData getReviewFromId(Scanner in) throws Exception {
         if (this.reviews.size() == 0)
             throw new Exception("Nu există recenzii");
         if (this.reviews.size() == 1)
@@ -159,15 +183,31 @@ public class MainService {
     }
 
     public void showReview(Scanner in) throws Exception {
-        var review = this.getReview(in);
+        var review = this.getReviewFromId(in);
         System.out.println(review.toString());
     }
 
-    public void removeGame(Scanner in) throws Exception {
-
+    private ReviewData getReviewFromUser(Scanner in, UserData user) throws Exception {
+        List<ReviewData> devReviews = user.filterReviews(this.reviews);
+        System.out.println("Recenziile utilizatorului: " + devReviews);
+        System.out.println("Alege ID-ul recenziei: ");
+        var reviewId = Integer.parseInt(in.nextLine());
+        if (!this.reviewsMap.containsKey(reviewId))
+            throw new Exception("Acesta nu este o recenzie validă");
+        var review = reviewsMap.get(reviewId);
+        if (review.getUserId() != user.getUserId())
+            throw new Exception("Această recenzie nu a fost creată de acest utilizator");
+        return review;
     }
 
     public void removeReview(Scanner in) throws Exception {
+        var user = this.getUserFromId(in);
+        var review = this.getReviewFromUser(in, user);
+        if (user.filterReviews(this.reviews).size() <= 1)
+            throw new Exception("Acest utilizator nu are recenzii");
+        this.reviewsMap.remove(review.getReviewId());
+        this.reviews.remove(review);
+        System.out.println("Recenzia ofensivă a fost eliminată");
     }
 }
 

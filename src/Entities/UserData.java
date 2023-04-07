@@ -37,6 +37,14 @@ public class UserData {
         this.birthDate = new SimpleDateFormat("yyyy-mm-dd").parse(in.nextLine());
     }
 
+    public List<ReviewData> filterReviews(List<ReviewData> allReviews) {
+        var reviews = new ArrayList<ReviewData>();
+        for (var review : allReviews)
+            if (review.getUserId() == this.getUserId())
+                reviews.add(review);
+        return reviews;
+    }
+
     @Override
     public String toString() {
         return "{" +
