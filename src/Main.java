@@ -25,7 +25,7 @@ public class Main {
             // "remove_offensive_review_of_game",
             "11",
             // "commands",
-            "12",
+            "12"
             // "finish"
     );
     static List<String> commandDescriptions = Arrays.asList(
