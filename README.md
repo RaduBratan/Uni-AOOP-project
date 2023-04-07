@@ -1,9 +1,7 @@
-# Game reviews app
+## Details
+This is a project I created for my Advanced Object-Oriented Programming class at UniBuc FMI. The theme of the project (which I chose myself) is "Game Reviews Management System".
 
-### Description
-This is a project I created for my Advanced Object-Oriented Programming class at UniBuc FMI.
-
-### Requirements
+## Requirements
 
 #### Have at least 10 actions:
 - create developer account
@@ -33,5 +31,5 @@ This is a project I created for my Advanced Object-Oriented Programming class at
 13. MainService
 14. Main
 
-### Documentation
+## Documentation
 See any relevant documentation inside the source code via all the comments I wrote.
