@@ -19,15 +19,15 @@ public class AddressData {
     }
 
     public void read(Scanner in) {
-        System.out.println("Your state: ");
+        System.out.println("Țara: ");
         this.state = in.nextLine();
-        System.out.println("Your county: ");
+        System.out.println("Județul: ");
         this.county = in.nextLine();
-        System.out.println("Your city: ");
+        System.out.println("Municipiul / Sectorul: ");
         this.city = in.nextLine();
-        System.out.println("Your street: ");
+        System.out.println("Strada: ");
         this.street = in.nextLine();
-        System.out.println("Your postal code: ");
+        System.out.println("Codul poștal: ");
         this.postalCode = Integer.parseInt(in.nextLine());
     }
 

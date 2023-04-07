@@ -25,15 +25,15 @@ public class UserData {
     }
 
     public void read(Scanner in) throws ParseException {
-        System.out.println("Your full name: ");
+        System.out.println("Numele: ");
         this.name = in.nextLine();
-        System.out.println("Your email address: ");
+        System.out.println("Adresa de e-mail: ");
         this.email = in.nextLine();
-        System.out.println("Your password: ");
+        System.out.println("Parola: ");
         this.password = in.nextLine();
-        System.out.println("Your phone number: ");
+        System.out.println("Numărul de telefon: ");
         this.phone = in.nextLine();
-        System.out.println("Your date of birth (in yyyy-mm-dd format): ");
+        System.out.println("Data de naștere (în formatul aaaa-ll-zz): ");
         this.birthDate = new SimpleDateFormat("yyyy-mm-dd").parse(in.nextLine());
     }
 

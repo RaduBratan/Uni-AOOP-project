@@ -15,7 +15,7 @@ public class ReviewData {
     }
 
     public void read(Scanner in) {
-        System.out.println("Your review: ");
+        System.out.println("Recenzia ta: ");
         this.reviewText = in.nextLine();
     }
 

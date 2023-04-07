@@ -22,19 +22,19 @@ public class GameData {
     }
 
     public void read(Scanner in) {
-        System.out.println("Game name: ");
+        System.out.println("Numele jocului: ");
         this.gameName = in.nextLine();
-        System.out.println("Developer name: ");
+        System.out.println("Numele dezvoltatorului: ");
         this.devName = in.nextLine();
-        System.out.println("Genre: ");
+        System.out.println("Genul jocului: ");
         this.genre = in.nextLine();
-        System.out.println("Price: ");
+        System.out.println("Prețul jocului: ");
         this.price = in.nextLine();
-        System.out.println("Downloads: ");
+        System.out.println("Numărul de descărcări: ");
         this.downloads = in.nextLine();
-        System.out.println("Average completion time: ");
+        System.out.println("Timpul mediu de completare: ");
         this.averageCompletionTime = in.nextLine();
-        System.out.println("Short description: ");
+        System.out.println("Scurtă descriere: ");
         this.description = in.nextLine();
     }
 
