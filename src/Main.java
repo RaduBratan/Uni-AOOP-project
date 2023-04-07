@@ -4,29 +4,31 @@ public class Main {
 
     static List<String> commandNumbers = Arrays.asList(
             "1",
-            // "create_developer_account",
             "2",
-            // "create_user_account",
             "3",
-            // "show_developer_account",
             "4",
-            // "show_user_account",
             "5",
-            // "add_game_to_dev",
             "6",
-            // "add_review_to_game",
             "7",
-            // "show_all_games_of_dev",
             "8",
-            // "show_all_reviews_of_game",
             "9",
-            // "remove_offensive_game_of_dev",
             "10",
-            // "remove_offensive_review_of_game",
             "11",
-            // "commands",
             "12"
-            // "finish"
+    );
+    static List<String> commandTexts = Arrays.asList(
+            "create_developer_account",
+            "create_user_account",
+            "show_developer_account",
+            "show_user_account",
+            "add_game_to_dev",
+            "add_review_to_game",
+            "show_all_games_of_dev",
+            "show_all_reviews_of_game",
+            "remove_offensive_game_of_dev",
+            "remove_offensive_review_of_game",
+            "commands",
+            "finish"
     );
     static List<String> commandDescriptions = Arrays.asList(
             "Creează un cont pentru un dezvoltator",
@@ -45,7 +47,7 @@ public class Main {
 
     private static void showAllCommands() {
         for (int i = 0; i < commandNumbers.size(); ++i)
-            System.out.println((i + 1) + ". " + commandDescriptions.get(i) + " (" + commandNumbers.get(i) + ")");
+            System.out.println((i + 1) + ". " + commandDescriptions.get(i));
     }
 
     public static void main(String[] args) {
@@ -53,46 +55,34 @@ public class Main {
         boolean end = false;
 
         while (!end) {
-            System.out.println("Tastează o comandă (6 = listă comenzi)");
+            System.out.println("\nTastează o comandă (11 = listă comenzi)");
             String command = in.nextLine().toLowerCase(Locale.ROOT);
             try {
                 switch (command) {
-                    case "1":
+                    case "1" -> new MainService().createDeveloper(in);
                     // case "create_developer_account":
-                        new MainService().createDeveloper(in);
-                    case "2":
+                    case "2" -> new MainService().createUser(in);
                     // case "create_user_account":
-                        new MainService().createUser(in);
-                    case "3":
+                    case "3" -> new MainService().showDeveloper(in);
                     // case "show_developer_account":
-                        new MainService().showDeveloper(in);
-                    case "4":
+                    case "4" -> new MainService().showUser(in);
                     // case "show_user_account":
-                        new MainService().showUser(in);
-                    case "5":
+                    case "5" -> new MainService().addGame(in);
                     // case "add_game_to_dev":
-                        new MainService().addGame(in);
-                    case "6":
+                    case "6" -> new MainService().addReview(in);
                     // case "add_review_to_game":
-                        new MainService().addReview(in);
-                    case "7":
+                    case "7" -> new MainService().showGames(in);
                     // case "show_all_games_of_dev":
-                        new MainService().showGames(in);
-                    case "8":
+                    case "8" -> new MainService().showReviews(in);
                     // case "show_all_reviews_of_game":
-                        new MainService().showReviews(in);
-                    case "9":
+                    case "9" -> new MainService().removeGame(in);
                     // case "remove_offensive_game_of_dev":
-                        new MainService().removeGame(in);
-                    case "10":
+                    case "10" -> new MainService().removeReview(in);
                     // case "remove_offensive_review_of_game":
-                        new MainService().removeReview(in);
-                    case "11":
+                    case "11" -> Main.showAllCommands();
                     // case "commands":
-                        Main.showAllCommands();
-                    case "12":
+                    case "12" -> end = true;
                     // case "finish":
-                        end = true;
                 }
             } catch (Exception e) {
                 System.out.println(e.toString());
