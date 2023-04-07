@@ -23,8 +23,8 @@ public class Main {
             "show_user_account",
             "add_game_to_dev",
             "add_review_to_game",
-            "show_all_games_of_dev",
-            "show_all_reviews_of_game",
+            "show_game_of_dev",
+            "show_review_of_game",
             "remove_offensive_game_of_dev",
             "remove_offensive_review_of_game",
             "commands",
@@ -37,8 +37,8 @@ public class Main {
             "Vizionează contul unui utilizator",
             "Adaugă un joc al unui dezvoltator",
             "Adaugă o recenzie a unui utilizator",
-            "Arată toate jocurile unui dezvoltator",
-            "Arată toate recenziile unui utilizator",
+            "Găsește un joc al unui dezvoltator",
+            "Găsește o recenzie a unui utilizator",
             "Elimină un joc ofensiv",
             "Elimină o recenzie ofensivă",
             "Afișează toate comenzile",
@@ -71,9 +71,9 @@ public class Main {
                     // case "add_game_to_dev":
                     case "6" -> new MainService().addReview(in);
                     // case "add_review_to_game":
-                    case "7" -> new MainService().showGames(in);
+                    case "7" -> new MainService().showGame(in);
                     // case "show_all_games_of_dev":
-                    case "8" -> new MainService().showReviews(in);
+                    case "8" -> new MainService().showReview(in);
                     // case "show_all_reviews_of_game":
                     case "9" -> new MainService().removeGame(in);
                     // case "remove_offensive_game_of_dev":

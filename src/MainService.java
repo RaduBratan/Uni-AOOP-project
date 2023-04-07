@@ -10,11 +10,13 @@ public class MainService {
     private List<DeveloperData> developers = new ArrayList<>();
     private List<UserData> users = new ArrayList<>();
     private List<GameData> games = new ArrayList<>();
+    private List<ReviewData> reviews = new ArrayList<>();
 
-    private final Map<String, GameData> gamesMap = new HashMap<>();
+    // private final Map<String, GameData> gamesMap = new HashMap<>();
     private final DeveloperFactory developerFactory = new DeveloperFactory();
     private final UserFactory userFactory = new UserFactory();
     private final GameFactory gameFactory = new GameFactory();
+    private final ReviewFactory reviewFactory = new ReviewFactory();
 
     public List<DeveloperData> getDevelopers() {
         return developers;
@@ -28,6 +30,10 @@ public class MainService {
         return games;
     }
 
+    public List<ReviewData> getReviews() {
+        return reviews;
+    }
+
     public void setDevelopers(List<DeveloperData> developers) {
         this.developers = developers;
     }
@@ -38,6 +44,10 @@ public class MainService {
 
     public void setGames(List<GameData> games) {
         this.games = games;
+    }
+
+    public void setReviews(List<ReviewData> reviews) {
+        this.reviews = reviews;
     }
 
     // ------------ functions included in Main
@@ -88,16 +98,69 @@ public class MainService {
         System.out.println(user.toString());
     }
 
-    public void addGame(Scanner in) {
+    public void addGame(Scanner in) throws Exception {
+        var developer = this.getDeveloper(in);
+        System.out.println("Numele jocului: ");
+        String gameName = in.nextLine();
+        System.out.println("Numele dezvoltatorului: ");
+        String devName = in.nextLine();
+        System.out.println("Genul jocului: ");
+        String genre = in.nextLine();
+        System.out.println("Prețul jocului: ");
+        String price = in.nextLine();
+        System.out.println("Numărul de descărcări: ");
+        String downloads = in.nextLine();
+        System.out.println("Timpul mediu de completare: ");
+        String averageCompletionTime = in.nextLine();
+        System.out.println("Scurtă descriere: ");
+        String description = in.nextLine();
+        GameData newGame = this.gameFactory.addGame(developer.getDeveloperId(), gameName, devName, genre, price, downloads, averageCompletionTime, description);
+        games.add(newGame);
+        System.out.println("Jocul a fost adăugat");
     }
 
-    public void addReview(Scanner in) {
+    public void addReview(Scanner in) throws Exception {
+        var user = this.getUser(in);
+        var game = this.getGame(in);
+        System.out.println("Recenzia ta: ");
+        String reviewText = in.nextLine();
+        ReviewData newReview = this.reviewFactory.addReview(user.getUserId(), game.getGameId(), reviewText);
+        reviews.add(newReview);
+        System.out.println("Recenzia a fost adăugată");
     }
 
-    public void showGames(Scanner in) {
+    private GameData getGame(Scanner in) throws Exception {
+        if (this.games.size() == 0)
+            throw new Exception("Nu există jocuri");
+        if (this.games.size() == 1)
+            return games.get(0);
+        System.out.println("ID-ul jocului între 0 și " + (this.games.size() - 1) + ": ");
+        int gameId = Integer.parseInt(in.nextLine());
+        if (gameId > this.games.size())
+            throw new Exception("Nu există jocul cu acest ID");
+        return games.get(gameId);
     }
 
-    public void showReviews(Scanner in) {
+    private ReviewData getReview(Scanner in) throws Exception {
+        if (this.reviews.size() == 0)
+            throw new Exception("Nu există recenzii");
+        if (this.reviews.size() == 1)
+            return reviews.get(0);
+        System.out.println("ID-ul recenziei între 0 și " + (this.reviews.size() - 1) + ": ");
+        int reviewId = Integer.parseInt(in.nextLine());
+        if (reviewId > this.reviews.size())
+            throw new Exception("Nu există recenzia cu acest ID");
+        return reviews.get(reviewId);
+    }
+
+    public void showGame(Scanner in) throws Exception {
+        var game = this.getGame(in);
+        System.out.println(game.toString());
+    }
+
+    public void showReview(Scanner in) throws Exception {
+        var review = this.getReview(in);
+        System.out.println(review.toString());
     }
 
     public void removeGame(Scanner in) {
