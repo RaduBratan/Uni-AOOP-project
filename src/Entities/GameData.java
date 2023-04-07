@@ -21,7 +21,7 @@ public class GameData {
         this.description = description;
     }
 
-    public void read(Scanner in){
+    public void read(Scanner in) {
         System.out.println("Game name: ");
         this.gameName = in.nextLine();
         System.out.println("Developer name: ");

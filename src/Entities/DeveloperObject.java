@@ -17,7 +17,8 @@ public class DeveloperObject {
     public List<DeveloperData> getDevelopers() {
         return developers;
     }
-    public void setDevelopers(List<DeveloperData> customers) {
+
+    public void setDevelopers(List<DeveloperData> developers) {
         this.developers = developers;
     }
 }

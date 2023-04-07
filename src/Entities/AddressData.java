@@ -51,6 +51,7 @@ public class AddressData {
     public String getState() {
         return state;
     }
+
     public void setState(String state) {
         this.state = state;
     }
@@ -58,6 +59,7 @@ public class AddressData {
     public String getCounty() {
         return county;
     }
+
     public void setCounty(String county) {
         this.county = county;
     }
@@ -65,6 +67,7 @@ public class AddressData {
     public String getCity() {
         return city;
     }
+
     public void setCity(String city) {
         this.city = city;
     }
@@ -72,6 +75,7 @@ public class AddressData {
     public String getStreet() {
         return street;
     }
+
     public void setStreet(String street) {
         this.street = street;
     }
@@ -79,6 +83,7 @@ public class AddressData {
     public void setPostalCode(int postalCode) {
         this.postalCode = postalCode;
     }
+
     public int getPostalCode() {
         return postalCode;
     }

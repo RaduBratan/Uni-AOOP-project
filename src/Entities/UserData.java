@@ -63,6 +63,7 @@ public class UserData {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -70,6 +71,7 @@ public class UserData {
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -77,6 +79,7 @@ public class UserData {
     public String getPassword() {
         return password;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
@@ -84,6 +87,7 @@ public class UserData {
     public String getPhone() {
         return phone;
     }
+
     public void setPhone(String phone) {
         this.phone = phone;
     }
@@ -91,6 +95,7 @@ public class UserData {
     public Date getBirthDate() {
         return birthDate;
     }
+
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }

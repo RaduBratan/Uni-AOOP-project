@@ -119,16 +119,6 @@ public class MainService {
         System.out.println("Jocul a fost adăugat");
     }
 
-    public void addReview(Scanner in) throws Exception {
-        var user = this.getUser(in);
-        var game = this.getGame(in);
-        System.out.println("Recenzia ta: ");
-        String reviewText = in.nextLine();
-        ReviewData newReview = this.reviewFactory.addReview(user.getUserId(), game.getGameId(), reviewText);
-        reviews.add(newReview);
-        System.out.println("Recenzia a fost adăugată");
-    }
-
     private GameData getGame(Scanner in) throws Exception {
         if (this.games.size() == 0)
             throw new Exception("Nu există jocuri");
@@ -139,6 +129,21 @@ public class MainService {
         if (gameId > this.games.size())
             throw new Exception("Nu există jocul cu acest ID");
         return games.get(gameId);
+    }
+
+    public void showGame(Scanner in) throws Exception {
+        var game = this.getGame(in);
+        System.out.println(game.toString());
+    }
+
+    public void addReview(Scanner in) throws Exception {
+        var user = this.getUser(in);
+        var game = this.getGame(in);
+        System.out.println("Recenzia ta: ");
+        String reviewText = in.nextLine();
+        ReviewData newReview = this.reviewFactory.addReview(user.getUserId(), game.getGameId(), reviewText);
+        reviews.add(newReview);
+        System.out.println("Recenzia a fost adăugată");
     }
 
     private ReviewData getReview(Scanner in) throws Exception {
@@ -153,20 +158,16 @@ public class MainService {
         return reviews.get(reviewId);
     }
 
-    public void showGame(Scanner in) throws Exception {
-        var game = this.getGame(in);
-        System.out.println(game.toString());
-    }
-
     public void showReview(Scanner in) throws Exception {
         var review = this.getReview(in);
         System.out.println(review.toString());
     }
 
-    public void removeGame(Scanner in) {
+    public void removeGame(Scanner in) throws Exception {
+
     }
 
-    public void removeReview(Scanner in) {
+    public void removeReview(Scanner in) throws Exception {
     }
 }
 
