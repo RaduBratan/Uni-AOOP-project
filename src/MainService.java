@@ -5,7 +5,7 @@ import java.util.*;
 
 public class MainService {
 
-    // values, setters and getters
+    // ------------ values, setters and getters
 
     private List<DeveloperData> developers = new ArrayList<>();
     private List<UserData> users = new ArrayList<>();
@@ -40,7 +40,7 @@ public class MainService {
         this.games = games;
     }
 
-    // functions included in MainService
+    // ------------ functions included in Main
 
     public void createDeveloper(Scanner in) throws ParseException {
         DeveloperData newDeveloper = developerFactory.createDeveloper(in);
@@ -55,6 +55,8 @@ public class MainService {
             return developers.get(0);
         System.out.println("ID-ul dezvoltatorului între 0 și " + (this.developers.size() - 1) + ": ");
         int developerId = Integer.parseInt(in.nextLine());
+        if (developerId > this.developers.size())
+            throw new Exception("Nu există dezvoltatorul cu acest ID");
         return developers.get(developerId);
     }
 
@@ -76,6 +78,8 @@ public class MainService {
             return users.get(0);
         System.out.println("ID-ul utilizatorului între 0 și " + (this.users.size() - 1) + ": ");
         int userId = Integer.parseInt(in.nextLine());
+        if (userId > this.users.size())
+            throw new Exception("Nu există utilizatorul cu acest ID");
         return users.get(userId);
     }
 
@@ -84,17 +88,23 @@ public class MainService {
         System.out.println(user.toString());
     }
 
-    public void addGame(Scanner in) { }
+    public void addGame(Scanner in) {
+    }
 
-    public void addReview(Scanner in) { }
+    public void addReview(Scanner in) {
+    }
 
-    public void showGames(Scanner in) { }
+    public void showGames(Scanner in) {
+    }
 
-    public void showReviews(Scanner in) { }
+    public void showReviews(Scanner in) {
+    }
 
-    public void removeGame(Scanner in) { }
+    public void removeGame(Scanner in) {
+    }
 
-    public void removeReview(Scanner in) { }
+    public void removeReview(Scanner in) {
+    }
 }
 
 /*
@@ -110,4 +120,4 @@ public class MainService {
         if(new DeveloperData().comparePasswords(developerId, developerPassword))
             return developers.get(developerId);
     }
-    */
+*/
