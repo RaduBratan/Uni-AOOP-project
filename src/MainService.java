@@ -7,10 +7,10 @@ public class MainService {
 
     // ------------ values, setters and getters
 
-    private List<DeveloperData> developers = new ArrayList<>();
-    private List<UserData> users = new ArrayList<>();
-    private List<GameData> games = new ArrayList<>();
-    private List<ReviewData> reviews = new ArrayList<>();
+    private List<DeveloperData> developers = new ArrayList<DeveloperData>();
+    private List<UserData> users = new ArrayList<UserData>();
+    private List<GameData> games = new ArrayList<GameData>();
+    private List<ReviewData> reviews = new ArrayList<ReviewData>();
 
     private final Map<String, GameData> gamesMap = new HashMap<>();
     private final Map<Integer, ReviewData> reviewsMap = new HashMap<>();
