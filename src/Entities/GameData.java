@@ -6,8 +6,6 @@ public class GameData {
 
     private final int gameId, devId;
     private String gameName, devName, genre, price, downloads, averageCompletionTime, description;
-    protected List<ReviewData> reviews = new ArrayList<>();
-    private final ReviewFactory reviewFactory = new ReviewFactory();
 
     public GameData(int gameId, int devId, String gameName, String devName, String genre, String price, String downloads, String averageCompletionTime, String description) {
         this.gameId = gameId;
@@ -36,6 +34,43 @@ public class GameData {
         this.averageCompletionTime = in.nextLine();
         System.out.println("Scurtă descriere: ");
         this.description = in.nextLine();
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "\n" +
+                " gameId='" + gameId + "', " +
+                "\n" +
+                " devId='" + devId + "', " +
+                "\n" +
+                " gameName='" + gameName + "', " +
+                "\n" +
+                " devName='" + devName + "', " +
+                "\n" +
+                " genre='" + genre + "', " +
+                "\n" +
+                " price='" + price + "', " +
+                "\n" +
+                " downloads=" + downloads +
+                "\n" +
+                " averageCompletionTime=" + averageCompletionTime +
+                "\n" +
+                " description=" + description +
+                "\n" +
+                "}";
+    }
+
+    public String toCSV() {
+        return gameId + "," +
+                "\n" + devId + "," +
+                "\n" + gameName + "," +
+                "\n" + devName + "," +
+                "\n" + genre + "," +
+                "\n" + price + "," +
+                "\n" + downloads + "," +
+                "\n" + averageCompletionTime + "," +
+                "\n" + description;
     }
 
     public int getGameId() {

@@ -48,6 +48,14 @@ public class AddressData {
                 "}";
     }
 
+    public String toCSV() {
+        return state + "," +
+                "\n" + county + "," +
+                "\n" + city + "," +
+                "\n" + street + "," +
+                "\n" + postalCode;
+    }
+
     public String getState() {
         return state;
     }

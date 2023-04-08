@@ -19,6 +19,28 @@ public class ReviewData {
         this.reviewText = in.nextLine();
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                "\n" +
+                " reviewId='" + reviewId + "', " +
+                "\n" +
+                " userId='" + userId + "', " +
+                "\n" +
+                " gameId='" + gameId + "', " +
+                "\n" +
+                " reviewText=" + reviewText +
+                "\n" +
+                "}";
+    }
+
+    public String toCSV() {
+        return reviewId + "," +
+                "\n" + userId + "," +
+                "\n" + gameId + "," +
+                "\n" + reviewText;
+    }
+
     public int getReviewId() {
         return reviewId;
     }

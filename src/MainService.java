@@ -19,6 +19,11 @@ public class MainService {
     private final GameFactory gameFactory = new GameFactory();
     private final ReviewFactory reviewFactory = new ReviewFactory();
 
+    private DeveloperObject developerObject = null;
+    private UserObject userObject = null;
+    private GameObject gameObject = null;
+    private ReviewObject reviewObject = null;
+
     public List<DeveloperData> getDevelopers() {
         return developers;
     }
@@ -51,10 +56,26 @@ public class MainService {
         this.reviews = reviews;
     }
 
+    public MainService(DeveloperObject developerObject, UserObject userObject, GameObject gameObject, ReviewObject reviewObject) {
+        this.developerObject = developerObject;
+        this.userObject = userObject;
+        this.gameObject = gameObject;
+        this.reviewObject = reviewObject;
+
+        developerObject.readFromCSV();
+        userObject.readFromCSV();
+        gameObject.readFromCSV();
+        reviewObject.readFromCSV();
+    }
+
+    public MainService() {
+    }
+
     // ------------ functions included in Main
 
     public void createDeveloper(Scanner in) throws ParseException {
         DeveloperData newDeveloper = developerFactory.createDeveloper(in);
+        // newDeveloper = developerFactory.createDeveloper(newDeveloper.getName(), newDeveloper.getEmail(), newDeveloper.getPassword(), newDeveloper.getCNP(), newDeveloper.getPhone(), newDeveloper.getBirthDate(), newDeveloper.getAddress());
         this.developers.add(newDeveloper);
         System.out.println("Contul de dezvoltator a fost creat");
     }

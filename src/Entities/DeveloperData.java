@@ -16,7 +16,7 @@ public class DeveloperData {
     protected List<GameData> games = new ArrayList<>();
     private final GameFactory gameFactory = new GameFactory();
 
-    public DeveloperData(int devId, String name, String email, String password, String cnp, String phone, Date birthDate, AddressData addressData, GameData gameData) {
+    public DeveloperData(int devId, String name, String email, String password, String cnp, String phone, Date birthDate, AddressData addressData) {
         this.devId = devId;
         this.name = name;
         this.email = email;
@@ -57,37 +57,43 @@ public class DeveloperData {
         return games;
     }
 
+    public void addGame(String gameName, String genre, String price, String downloads, String averageCompletionTime, String description) {
+        GameData newGame = gameFactory.addGame(this.devId, gameName, this.name, genre, price, downloads, averageCompletionTime, description);
+        games.add(newGame);
+    }
+
     @Override
     public String toString() {
         return "{" +
                 "\n" +
-                " devId=" + devId + "', " +
+                " devId=" + devId + "'," +
                 "\n" +
-                " name='" + name + "', " +
+                " name='" + name + "'," +
                 "\n" +
-                " email='" + email + "', " +
+                " email='" + email + "'," +
                 "\n" +
-                " password='" + password + "', " +
+                " password='" + password + "'," +
                 "\n" +
-                " cnp='" + cnp + "', " +
+                " cnp='" + cnp + "'," +
                 "\n" +
-                " phone='" + phone + "', " +
+                " phone='" + phone + "'," +
                 "\n" +
-                " birthDate=" + (new SimpleDateFormat("yyyy-mm-dd")).format(birthDate) + ", " +
+                " birthDate=" + (new SimpleDateFormat("yyyy-mm-dd")).format(birthDate) + "," +
                 "\n" +
                 " address=" + addressData.toString() +
                 "}";
     }
 
-    /*
-    public boolean comparePasswords(int typedId, String typedPassword) {
-        if (typedId == this.getDeveloperId())
-            if (typedPassword == this.getPassword()) {
-                return true;
-            }
-        return false;
+    public String toCSV() {
+        return devId + "," +
+                "\n" + name + "," +
+                "\n" + email + "," +
+                "\n" + password + "," +
+                "\n" + cnp + "," +
+                "\n" + phone + "," +
+                "\n" + (new SimpleDateFormat("yyyy-mm-dd")).format(birthDate) + "," +
+                "\n" + addressData.toCSV();
     }
-    */
 
     public int getDeveloperId() {
         return devId;

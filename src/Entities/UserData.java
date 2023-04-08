@@ -9,6 +9,8 @@ public class UserData {
     private final int userId;
     private String name, email, password, phone;
     private Date birthDate;
+    protected List<ReviewData> reviews = new ArrayList<>();
+    private final ReviewFactory reviewFactory = new ReviewFactory();
 
     public UserData(int userId, String name, String email, String password, String phone, Date birthDate) {
         this.userId = userId;
@@ -45,6 +47,11 @@ public class UserData {
         return reviews;
     }
 
+    public void addReview(GameData gameData, String reviewText) {
+        ReviewData newReview = reviewFactory.addReview(this.userId, gameData.getGameId(), reviewText);
+        reviews.add(newReview);
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -62,6 +69,15 @@ public class UserData {
                 " birthDate=" + (new SimpleDateFormat("yyyy-mm-dd")).format(birthDate) + ", " +
                 "\n" +
                 "}";
+    }
+
+    public String toCSV() {
+        return userId + "," +
+                "\n" + name + "," +
+                "\n" + email + "," +
+                "\n" + password + "," +
+                "\n" + phone + "," +
+                "\n" + (new SimpleDateFormat("yyyy-mm-dd")).format(birthDate);
     }
 
     public int getUserId() {
