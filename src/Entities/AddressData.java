@@ -3,6 +3,7 @@ package Entities;
 import java.util.Scanner;
 
 public class AddressData {
+
     private String state, county, city, street;
     private int postalCode;
 
