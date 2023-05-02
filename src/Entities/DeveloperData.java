@@ -1,5 +1,7 @@
 package Entities;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,6 +34,11 @@ public class DeveloperData {
         this.read(in);
     }
 
+    public DeveloperData(int devId, ResultSet in) throws SQLException {
+        this.devId = devId;
+        this.read(in);
+    }
+
     public void read(Scanner in) throws ParseException {
         System.out.println("Numele: ");
         this.name = in.nextLine();
@@ -46,6 +53,16 @@ public class DeveloperData {
         System.out.println("Data de naștere (în formatul aaaa-ll-zz): ");
         this.birthDate = new SimpleDateFormat("yyyy-mm-dd").parse(in.nextLine());
         System.out.println("Adresa completă: ");
+        this.addressData = new AddressData(in);
+    }
+
+    public void read(ResultSet in) throws SQLException {
+        this.name = in.getString("name");
+        this.email = in.getString("email");
+        this.password = in.getString("password");
+        this.cnp = in.getString("cnp");
+        this.phone = in.getString("phone");
+        this.birthDate = in.getDate("birthDate");
         this.addressData = new AddressData(in);
     }
 

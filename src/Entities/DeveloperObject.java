@@ -60,7 +60,7 @@ public class DeveloperObject {
             }
             DeveloperFactory.incrementUniqueId(columns.size());
         } catch (ParseException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
     }
 
@@ -73,7 +73,7 @@ public class DeveloperObject {
             }
             writer.close();
         } catch (IOException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
     }
 }

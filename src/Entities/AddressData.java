@@ -1,5 +1,7 @@
 package Entities;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class AddressData {
@@ -19,6 +21,10 @@ public class AddressData {
         this.read(in);
     }
 
+    public AddressData(ResultSet in) throws SQLException {
+        this.read(in);
+    }
+
     public void read(Scanner in) {
         System.out.println("Țara: ");
         this.state = in.nextLine();
@@ -30,6 +36,14 @@ public class AddressData {
         this.street = in.nextLine();
         System.out.println("Codul poștal: ");
         this.postalCode = Integer.parseInt(in.nextLine());
+    }
+
+    public void read(ResultSet in) throws SQLException {
+        this.state = in.getString("state");
+        this.county = in.getString("county");
+        this.city = in.getString("city");
+        this.street = in.getString("street");
+        this.postalCode = in.getInt("postalCode");
     }
 
     @Override
