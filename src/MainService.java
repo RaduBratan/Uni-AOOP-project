@@ -6,23 +6,22 @@ import java.util.*;
 public class MainService {
 
     // ------------ values, setters and getters
-
     private List<DeveloperData> developers = new ArrayList<>();
     private List<UserData> users = new ArrayList<>();
     private List<GameData> games = new ArrayList<>();
     private List<ReviewData> reviews = new ArrayList<>();
 
-    private final Map<String, GameData> gamesMap = new HashMap<>();
-    private final Map<Integer, ReviewData> reviewsMap = new HashMap<>();
+    private final Map<String, GameData> gamesMap = new HashMap<>(); // the string is for gameName
+    private final Map<Integer, ReviewData> reviewsMap = new HashMap<>(); // the int is for reviewId
     private final DeveloperFactory developerFactory = new DeveloperFactory();
     private final UserFactory userFactory = new UserFactory();
     private final GameFactory gameFactory = new GameFactory();
     private final ReviewFactory reviewFactory = new ReviewFactory();
 
-    private DeveloperObject developerObject = null;
-    private UserObject userObject = null;
-    // private GameObject gameObject = null;
-    // private ReviewObject reviewObject = null;
+    private DeveloperDatabase developerDatabase = null;
+    private UserDatabase userDatabase = null;
+    // private GameDatabase gameDatabase = null;
+    // private ReviewDatabase reviewDatabase = null;
 
     public List<DeveloperData> getDevelopers() {
         return developers;
@@ -56,23 +55,22 @@ public class MainService {
         this.reviews = reviews;
     }
 
-    public MainService(DeveloperObject developerObject, UserObject userObject /*, GameObject gameObject, ReviewObject reviewObject */) {
-        this.developerObject = developerObject;
-        this.userObject = userObject;
-        // this.gameObject = gameObject;
-        // this.reviewObject = reviewObject;
+    public MainService(DeveloperDatabase developerDatabase, UserDatabase userDatabase /*, GameDatabase gameDatabase, ReviewDatabase reviewDatabase */) {
+        this.developerDatabase = developerDatabase;
+        this.userDatabase = userDatabase;
+        // this.gameDatabase = gameDatabase;
+        // this.reviewDatabase = reviewDatabase;
 
-        developerObject.readFromCSV();
-        userObject.readFromCSV();
-        // gameObject.readFromCSV();
-        // reviewObject.readFromCSV();
+        this.developers = developerDatabase.read();
+        this.users = userDatabase.read();
+        // this.games = gameDatabase.read();
+        // this.reviews = reviewDatabase.read();
     }
 
     public MainService() {
     }
 
     // ------------ functions included in Main
-
     public void createDeveloper(Scanner in) throws ParseException {
         DeveloperData newDeveloper = developerFactory.createDeveloper(in);
         // newDeveloper = developerFactory.createDeveloper(newDeveloper.getName(), newDeveloper.getEmail(), newDeveloper.getPassword(), newDeveloper.getCNP(), newDeveloper.getPhone(), newDeveloper.getBirthDate(), newDeveloper.getAddress());

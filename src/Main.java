@@ -1,5 +1,10 @@
 import Entities.DeveloperData;
+import Entities.DeveloperDatabase;
+import Entities.UserDatabase;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.*;
 
 public class Main {
@@ -18,6 +23,7 @@ public class Main {
             "11",
             "12"
     );
+    /*
     static List<String> commandTexts = Arrays.asList(
             "create_developer_account",
             "create_user_account",
@@ -32,6 +38,7 @@ public class Main {
             "commands",
             "finish"
     );
+    */
     static List<String> commandDescriptions = Arrays.asList(
             "Creează un cont pentru un dezvoltator",
             "Creează un cont pentru un utilizator",
@@ -49,18 +56,36 @@ public class Main {
 
     private static void showAllCommands() {
         for (int i = 0; i < commandNumbers.size(); ++i)
-            System.out.println((i + 1) + ". " + commandDescriptions.get(i));
+            System.out.println((i + 1) + ". " + commandDescriptions.get(i) /* + "( " + commandTexts.get(i) + " )"*/);
+    }
+
+    public static Connection getConnection() {
+        try {
+            String url = "jdbc:mysql://localhost:3306/uni-aoop-project";
+            String user = "root";
+            String password = "rqbJVALFjsfeaKAp";
+            return DriverManager.getConnection(url, user, password);
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
     }
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         boolean end = false;
+        var connection = Main.getConnection();
+        var developerDatabase = new DeveloperDatabase(connection);
+        var userDatabase = new UserDatabase(connection);
+
+        MainService mainService = new MainService(developerDatabase, userDatabase);
+        CSVService csvService = new CSVService();
 
         while (!end) {
             System.out.println("\nTastează o comandă (11 = listă comenzi)");
-            String command = in.nextLine().toLowerCase(Locale.ROOT);
+            String cmd = in.nextLine().toLowerCase(Locale.ROOT);
             try {
-                switch (command) {
+                switch (cmd) {
                     case "1" -> new MainService().createDeveloper(in);
                     // case "create_developer_account":
                     case "2" -> new MainService().createUser(in);
@@ -86,8 +111,10 @@ public class Main {
                     case "12" -> end = true;
                     // case "finish":
                 }
+                if (commandNumbers.contains(cmd))
+                    csvService.logAction(cmd);
             } catch (Exception e) {
-                System.out.println(e.toString());
+                System.out.println(e);
             }
         }
     }
