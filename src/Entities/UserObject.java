@@ -58,7 +58,7 @@ public class UserObject {
             }
             UserFactory.incrementUniqueId(columns.size());
         } catch (ParseException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
     }
 
@@ -71,7 +71,7 @@ public class UserObject {
             }
             writer.close();
         } catch (IOException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
     }
 }

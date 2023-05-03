@@ -1,5 +1,7 @@
 package Entities;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -26,6 +28,11 @@ public class UserData {
         this.read(in);
     }
 
+    public UserData(int userId, ResultSet in) throws SQLException {
+        this.userId = userId;
+        this.read(in);
+    }
+
     public void read(Scanner in) throws ParseException {
         System.out.println("Numele: ");
         this.name = in.nextLine();
@@ -37,6 +44,14 @@ public class UserData {
         this.phone = in.nextLine();
         System.out.println("Data de naștere (în formatul aaaa-ll-zz): ");
         this.birthDate = new SimpleDateFormat("yyyy-mm-dd").parse(in.nextLine());
+    }
+
+    public void read(ResultSet in) throws SQLException {
+        this.name = in.getString("name");
+        this.email = in.getString("email");
+        this.password = in.getString("password");
+        this.phone = in.getString("phone");
+        this.birthDate = in.getDate("birthDate");
     }
 
     public List<ReviewData> filterReviews(List<ReviewData> allReviews) {

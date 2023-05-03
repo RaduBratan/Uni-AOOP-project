@@ -1,5 +1,7 @@
 package Entities;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Scanner;
 
@@ -11,6 +13,10 @@ public class UserFactory {
     }
 
     public UserData createUser(Scanner in) throws ParseException {
+        return new UserData(uniqueUserId++, in);
+    }
+
+    public UserData createUser(ResultSet in) throws SQLException {
         return new UserData(uniqueUserId++, in);
     }
 }
