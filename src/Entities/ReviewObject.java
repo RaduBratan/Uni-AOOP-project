@@ -1,3 +1,4 @@
+/*
 package Entities;
 
 import java.io.BufferedReader;
@@ -63,7 +64,8 @@ public class ReviewObject {
             }
             writer.close();
         } catch (IOException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
     }
 }
+*/

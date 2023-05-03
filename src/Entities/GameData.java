@@ -1,5 +1,8 @@
 package Entities;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.*;
 
 public class GameData {
@@ -19,7 +22,21 @@ public class GameData {
         this.description = description;
     }
 
-    public void read(Scanner in) {
+    /*
+    public GameData(int gameId, int devId, Scanner in) throws ParseException {
+        this.gameId = gameId;
+        this.devId = devId;
+        this.read(in);
+    }
+
+    public GameData(int gameId, int devId, ResultSet in) throws SQLException {
+        this.gameId = gameId;
+        this.devId = devId;
+        this.read(in);
+    }
+    */
+
+    public void read(Scanner in) throws ParseException {
         System.out.println("Numele jocului: ");
         this.gameName = in.nextLine();
         System.out.println("Numele dezvoltatorului: ");
@@ -34,6 +51,17 @@ public class GameData {
         this.averageCompletionTime = in.nextLine();
         System.out.println("Scurtă descriere: ");
         this.description = in.nextLine();
+    }
+
+    /*
+    public void read(ResultSet in) throws SQLException {
+        this.gameName = in.getString("gameName");
+        this.devName = in.getString("devName");
+        this.genre = in.getString("genre");
+        this.price = in.getString("price");
+        this.downloads = in.getString("downloads");
+        this.averageCompletionTime = in.getString("averageCompletionTime");
+        this.description = in.getString("description");
     }
 
     @Override
@@ -72,6 +100,7 @@ public class GameData {
                 "\n" + averageCompletionTime + "," +
                 "\n" + description;
     }
+    */
 
     public int getGameId() {
         return gameId;

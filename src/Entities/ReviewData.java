@@ -5,20 +5,21 @@ import java.util.Scanner;
 public class ReviewData {
 
     private final int reviewId, userId, gameId;
-    private String reviewText;
+    private String text;
 
-    public ReviewData(int reviewId, int userId, int gameId, String reviewText) {
+    public ReviewData(int reviewId, int userId, int gameId, String text) {
         this.reviewId = reviewId;
         this.userId = userId;
         this.gameId = gameId;
-        this.reviewText = reviewText;
+        this.text = text;
     }
 
     public void read(Scanner in) {
         System.out.println("Recenzia ta: ");
-        this.reviewText = in.nextLine();
+        this.text = in.nextLine();
     }
 
+    /*
     @Override
     public String toString() {
         return "{" +
@@ -40,6 +41,7 @@ public class ReviewData {
                 "\n" + gameId + "," +
                 "\n" + reviewText;
     }
+    */
 
     public int getReviewId() {
         return reviewId;
@@ -53,7 +55,7 @@ public class ReviewData {
         return gameId;
     }
 
-    public String getReviewText() {
-        return reviewText;
+    public String getText() {
+        return text;
     }
 }

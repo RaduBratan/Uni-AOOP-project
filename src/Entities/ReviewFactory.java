@@ -7,7 +7,7 @@ public class ReviewFactory {
         ReviewFactory.uniqueReviewId += i;
     }
 
-    public ReviewData addReview(int uniqueUserId, int uniqueGameId, String reviewText) {
-        return new ReviewData(uniqueReviewId++, uniqueUserId, uniqueGameId, reviewText);
+    public ReviewData addReview(int uniqueUserId, int uniqueGameId, String text) {
+        return new ReviewData(uniqueReviewId++, uniqueUserId, uniqueGameId, text);
     }
 }

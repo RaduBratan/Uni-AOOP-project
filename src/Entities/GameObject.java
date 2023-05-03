@@ -1,3 +1,4 @@
+/*
 package Entities;
 
 import java.io.BufferedReader;
@@ -70,7 +71,8 @@ public class GameObject {
             }
             writer.close();
         } catch (IOException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
     }
 }
+*/

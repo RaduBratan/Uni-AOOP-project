@@ -62,8 +62,8 @@ public class UserData {
         return reviews;
     }
 
-    public void addReview(GameData gameData, String reviewText) {
-        ReviewData newReview = reviewFactory.addReview(this.userId, gameData.getGameId(), reviewText);
+    public void addReview(GameData gameData, String text) {
+        ReviewData newReview = reviewFactory.addReview(this.userId, gameData.getGameId(), text);
         reviews.add(newReview);
     }
 

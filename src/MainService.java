@@ -21,8 +21,8 @@ public class MainService {
 
     private DeveloperObject developerObject = null;
     private UserObject userObject = null;
-    private GameObject gameObject = null;
-    private ReviewObject reviewObject = null;
+    // private GameObject gameObject = null;
+    // private ReviewObject reviewObject = null;
 
     public List<DeveloperData> getDevelopers() {
         return developers;
@@ -56,16 +56,16 @@ public class MainService {
         this.reviews = reviews;
     }
 
-    public MainService(DeveloperObject developerObject, UserObject userObject, GameObject gameObject, ReviewObject reviewObject) {
+    public MainService(DeveloperObject developerObject, UserObject userObject /*, GameObject gameObject, ReviewObject reviewObject */) {
         this.developerObject = developerObject;
         this.userObject = userObject;
-        this.gameObject = gameObject;
-        this.reviewObject = reviewObject;
+        // this.gameObject = gameObject;
+        // this.reviewObject = reviewObject;
 
         developerObject.readFromCSV();
         userObject.readFromCSV();
-        gameObject.readFromCSV();
-        reviewObject.readFromCSV();
+        // gameObject.readFromCSV();
+        // reviewObject.readFromCSV();
     }
 
     public MainService() {
