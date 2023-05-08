@@ -13,6 +13,7 @@ public class MainService {
 
     private final Map<String, GameData> gamesMap = new HashMap<>(); // the string is for gameName
     private final Map<Integer, ReviewData> reviewsMap = new HashMap<>(); // the int is for reviewId
+
     private final DeveloperFactory developerFactory = new DeveloperFactory();
     private final UserFactory userFactory = new UserFactory();
     private final GameFactory gameFactory = new GameFactory();
@@ -20,8 +21,8 @@ public class MainService {
 
     private DeveloperDatabase developerDatabase = null;
     private UserDatabase userDatabase = null;
-    // private GameDatabase gameDatabase = null;
-    // private ReviewDatabase reviewDatabase = null;
+    private GameDatabase gameDatabase = null;
+    private ReviewDatabase reviewDatabase = null;
 
     public List<DeveloperData> getDevelopers() {
         return developers;
@@ -55,26 +56,25 @@ public class MainService {
         this.reviews = reviews;
     }
 
-    public MainService(DeveloperDatabase developerDatabase, UserDatabase userDatabase /*, GameDatabase gameDatabase, ReviewDatabase reviewDatabase */) {
+    public MainService(DeveloperDatabase developerDatabase, UserDatabase userDatabase, GameDatabase gameDatabase, ReviewDatabase reviewDatabase) {
         this.developerDatabase = developerDatabase;
         this.userDatabase = userDatabase;
-        // this.gameDatabase = gameDatabase;
-        // this.reviewDatabase = reviewDatabase;
+        this.gameDatabase = gameDatabase;
+        this.reviewDatabase = reviewDatabase;
 
         this.developers = developerDatabase.read();
         this.users = userDatabase.read();
-        // this.games = gameDatabase.read();
-        // this.reviews = reviewDatabase.read();
+        this.games = gameDatabase.read();
+        this.reviews = reviewDatabase.read();
     }
 
-    public MainService() {
-    }
-
-    // ------------ functions included in Main
+    // ------------ functions included in Main for creating and getting developers
     public void createDeveloper(Scanner in) throws ParseException {
         DeveloperData newDeveloper = developerFactory.createDeveloper(in);
-        // newDeveloper = developerFactory.createDeveloper(newDeveloper.getName(), newDeveloper.getEmail(), newDeveloper.getPassword(), newDeveloper.getCNP(), newDeveloper.getPhone(), newDeveloper.getBirthDate(), newDeveloper.getAddress());
         this.developers.add(newDeveloper);
+        // newDeveloper = developerFactory.createDeveloper(newDeveloper.getName(), newDeveloper.getEmail(), newDeveloper.getPassword(), newDeveloper.getCNP(), newDeveloper.getPhone(), newDeveloper.getBirthDate(), newDeveloper.getAddress());
+        if (this.developerDatabase != null)
+            this.developerDatabase.create(newDeveloper);
         System.out.println("Contul de dezvoltator a fost creat");
     }
 
@@ -95,9 +95,12 @@ public class MainService {
         System.out.println(developer.toString());
     }
 
+    // ------------ functions included in Main for creating and getting users
     public void createUser(Scanner in) throws ParseException {
         UserData newUser = userFactory.createUser(in);
         this.users.add(newUser);
+        if (this.userDatabase != null)
+            this.userDatabase.create(newUser);
         System.out.println("Contul de utilizator a fost creat");
     }
 
@@ -118,6 +121,7 @@ public class MainService {
         System.out.println(user.toString());
     }
 
+    // ------------ functions included in Main for creating, getting and removing games
     public void addGame(Scanner in) throws Exception {
         var developer = this.getDeveloperFromId(in);
         System.out.println("Numele jocului: ");
@@ -136,6 +140,8 @@ public class MainService {
         String description = in.nextLine();
         GameData newGame = this.gameFactory.addGame(developer.getDeveloperId(), gameName, devName, genre, price, downloads, averageCompletionTime, description);
         games.add(newGame);
+        if (this.gameDatabase != null)
+            this.gameDatabase.create(newGame);
         System.out.println("Jocul a fost adăugat");
     }
 
@@ -176,9 +182,12 @@ public class MainService {
             throw new Exception("Acest dezvoltator nu are jocuri");
         this.gamesMap.remove(game.getGameName());
         this.games.remove(game);
+        if (this.gameDatabase != null)
+            this.gameDatabase.delete(game);
         System.out.println("Jocul ofensiv a fost eliminat");
     }
 
+    // ------------ functions included in Main for creating, getting and removing reviews
     public void addReview(Scanner in) throws Exception {
         var user = this.getUserFromId(in);
         var game = this.getGameFromId(in);
@@ -186,6 +195,8 @@ public class MainService {
         String reviewText = in.nextLine();
         ReviewData newReview = this.reviewFactory.addReview(user.getUserId(), game.getGameId(), reviewText);
         reviews.add(newReview);
+        if (this.reviewDatabase != null)
+            this.reviewDatabase.create(newReview);
         System.out.println("Recenzia a fost adăugată");
     }
 
@@ -226,6 +237,8 @@ public class MainService {
             throw new Exception("Acest utilizator nu are recenzii");
         this.reviewsMap.remove(review.getReviewId());
         this.reviews.remove(review);
+        if (this.reviewDatabase != null)
+            this.reviewDatabase.delete(review);
         System.out.println("Recenzia ofensivă a fost eliminată");
     }
 }

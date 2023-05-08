@@ -1,4 +1,3 @@
-/*
 package Entities;
 
 import java.io.BufferedReader;
@@ -68,4 +67,3 @@ public class ReviewObject {
         }
     }
 }
-*/

@@ -1,11 +1,13 @@
-import Entities.DeveloperData;
 import Entities.DeveloperDatabase;
 import Entities.UserDatabase;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 
 public class Main {
 
@@ -23,22 +25,7 @@ public class Main {
             "11",
             "12"
     );
-    /*
-    static List<String> commandTexts = Arrays.asList(
-            "create_developer_account",
-            "create_user_account",
-            "show_developer_account",
-            "show_user_account",
-            "add_game_to_dev",
-            "add_review_to_game",
-            "show_game_of_dev",
-            "show_review_of_game",
-            "remove_offensive_game_of_dev",
-            "remove_offensive_review_of_game",
-            "commands",
-            "finish"
-    );
-    */
+
     static List<String> commandDescriptions = Arrays.asList(
             "Creează un cont pentru un dezvoltator",
             "Creează un cont pentru un utilizator",
@@ -56,14 +43,14 @@ public class Main {
 
     private static void showAllCommands() {
         for (int i = 0; i < commandNumbers.size(); ++i)
-            System.out.println((i + 1) + ". " + commandDescriptions.get(i) /* + "( " + commandTexts.get(i) + " )"*/);
+            System.out.println((i + 1) + ". " + commandDescriptions.get(i));
     }
 
     public static Connection getConnection() {
         try {
-            String url = "jdbc:mysql://localhost:3306/uni-aoop-project";
-            String user = "root";
-            String password = "rqbJVALFjsfeaKAp";
+            String url = "";
+            String user = "";
+            String password = "";
             return DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
             System.out.println(e);
@@ -73,43 +60,33 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        boolean end = false;
-        var connection = Main.getConnection();
+        boolean finish = false;
+        var connection = getConnection();
         var developerDatabase = new DeveloperDatabase(connection);
         var userDatabase = new UserDatabase(connection);
+        var gameDatabase = new GameDatabase(connection);
+        var reviewDatabase = new ReviewDatabase(connection);
 
-        MainService mainService = new MainService(developerDatabase, userDatabase);
+        MainService mainService = new MainService(developerDatabase, userDatabase, gameDatabase, reviewDatabase);
         CSVService csvService = new CSVService();
 
-        while (!end) {
+        while (!finish) {
             System.out.println("\nTastează o comandă (11 = listă comenzi)");
             String cmd = in.nextLine().toLowerCase(Locale.ROOT);
             try {
                 switch (cmd) {
-                    case "1" -> new MainService().createDeveloper(in);
-                    // case "create_developer_account":
-                    case "2" -> new MainService().createUser(in);
-                    // case "create_user_account":
-                    case "3" -> new MainService().showDeveloper(in);
-                    // case "show_developer_account":
-                    case "4" -> new MainService().showUser(in);
-                    // case "show_user_account":
-                    case "5" -> new MainService().addGame(in);
-                    // case "add_game_to_dev":
-                    case "6" -> new MainService().addReview(in);
-                    // case "add_review_to_game":
-                    case "7" -> new MainService().showGame(in);
-                    // case "show_all_games_of_dev":
-                    case "8" -> new MainService().showReview(in);
-                    // case "show_all_reviews_of_game":
-                    case "9" -> new MainService().removeGame(in);
-                    // case "remove_offensive_game_of_dev":
-                    case "10" -> new MainService().removeReview(in);
-                    // case "remove_offensive_review_of_game":
-                    case "11" -> Main.showAllCommands();
-                    // case "commands":
-                    case "12" -> end = true;
-                    // case "finish":
+                    case "1" -> mainService.createDeveloper(in);
+                    case "2" -> mainService.createUser(in);
+                    case "3" -> mainService.showDeveloper(in);
+                    case "4" -> mainService.showUser(in);
+                    case "5" -> mainService.addGame(in);
+                    case "6" -> mainService.addReview(in);
+                    case "7" -> mainService.showGame(in);
+                    case "8" -> mainService.showReview(in);
+                    case "9" -> mainService.removeGame(in);
+                    case "10" -> mainService.removeReview(in);
+                    case "11" -> showAllCommands();
+                    case "12" -> finish = true;
                 }
                 if (commandNumbers.contains(cmd))
                     csvService.logAction(cmd);

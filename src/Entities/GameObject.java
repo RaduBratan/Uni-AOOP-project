@@ -1,4 +1,3 @@
-/*
 package Entities;
 
 import java.io.BufferedReader;
@@ -75,4 +74,3 @@ public class GameObject {
         }
     }
 }
-*/
