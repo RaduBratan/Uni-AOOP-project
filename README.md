@@ -15,21 +15,26 @@ This is a project I created for my Advanced Object-Oriented Programming class at
 - remove offensive game of dev
 - remove offensive review of game
 
-#### Use at least 8 classes (I created 14):
-1. GameData
-2. GameFactory
-3. GameObject
-4. ReviewData
-5. ReviewFactory
-6. ReviewObject
-7. UserData
-8. UserFactory
-9. UserObject
-10. DeveloperData
-11. DeveloperFactory
-12. DeveloperObject
-13. MainService
-14. Main
+#### Use at least 8 classes (I created 19):
+01. GameData
+02. GameDatabase
+03. GameFactory
+04. GameSingleton
+05. ReviewData
+06. ReviewDatabase
+07. ReviewFactory
+08. ReviewSingleton
+09. UserData
+10. UserDatabase
+11. UserFactory
+12. UserSingleton
+13. DeveloperData
+14. DeveloperDatabase
+15. DeveloperFactory
+16. DeveloperSingleton
+17. CSVService
+18. MainService
+19. Main
 
 ## Requirements for part 2
 
