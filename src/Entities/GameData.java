@@ -7,14 +7,14 @@ import java.util.*;
 
 public class GameData {
 
-    private final int gameId, devId;
-    private String gameName, devName, genre, price, downloads, averageCompletionTime, description;
+    private final int gameId;
+    private int devId;
+    private String name, genre, price, downloads, averageCompletionTime, description;
 
-    public GameData(int gameId, int devId, String gameName, String devName, String genre, String price, String downloads, String averageCompletionTime, String description) {
+    public GameData(int gameId, int devId, String name, String genre, String price, String downloads, String averageCompletionTime, String description) {
         this.gameId = gameId;
         this.devId = devId;
-        this.gameName = gameName;
-        this.devName = devName;
+        this.name = name;
         this.genre = genre;
         this.price = price;
         this.downloads = downloads;
@@ -22,85 +22,51 @@ public class GameData {
         this.description = description;
     }
 
-    /*
-    public GameData(int gameId, int devId, Scanner in) throws ParseException {
+    public GameData(int gameId, Scanner scanner) throws ParseException {
         this.gameId = gameId;
-        this.devId = devId;
-        this.read(in);
+        this.read(scanner);
     }
 
-    public GameData(int gameId, int devId, ResultSet in) throws SQLException {
+    public GameData(int gameId, ResultSet result) throws SQLException {
         this.gameId = gameId;
-        this.devId = devId;
-        this.read(in);
+        this.read(result);
     }
-    */
 
-    public void read(Scanner in) throws ParseException {
+    public void read(Scanner scanner) throws ParseException {
+        System.out.println("ID-ul dezvoltatorului: ");
+        this.devId = Integer.parseInt(scanner.nextLine());
         System.out.println("Numele jocului: ");
-        this.gameName = in.nextLine();
-        System.out.println("Numele dezvoltatorului: ");
-        this.devName = in.nextLine();
+        this.name = scanner.nextLine();
         System.out.println("Genul jocului: ");
-        this.genre = in.nextLine();
+        this.genre = scanner.nextLine();
         System.out.println("Prețul jocului: ");
-        this.price = in.nextLine();
+        this.price = scanner.nextLine();
         System.out.println("Numărul de descărcări: ");
-        this.downloads = in.nextLine();
+        this.downloads = scanner.nextLine();
         System.out.println("Timpul mediu de completare: ");
-        this.averageCompletionTime = in.nextLine();
+        this.averageCompletionTime = scanner.nextLine();
         System.out.println("Scurtă descriere: ");
-        this.description = in.nextLine();
+        this.description = scanner.nextLine();
     }
 
-    /*
-    public void read(ResultSet in) throws SQLException {
-        this.gameName = in.getString("gameName");
-        this.devName = in.getString("devName");
-        this.genre = in.getString("genre");
-        this.price = in.getString("price");
-        this.downloads = in.getString("downloads");
-        this.averageCompletionTime = in.getString("averageCompletionTime");
-        this.description = in.getString("description");
+    public void read(ResultSet result) throws SQLException {
+        this.devId = result.getInt("devId");
+        this.name = result.getString("gameName");
+        this.genre = result.getString("genre");
+        this.price = result.getString("price");
+        this.downloads = result.getString("downloads");
+        this.averageCompletionTime = result.getString("averageCompletionTime");
+        this.description = result.getString("description");
     }
 
     @Override
     public String toString() {
-        return "{" +
-                "\n" +
-                " gameId='" + gameId + "', " +
-                "\n" +
-                " devId='" + devId + "', " +
-                "\n" +
-                " gameName='" + gameName + "', " +
-                "\n" +
-                " devName='" + devName + "', " +
-                "\n" +
-                " genre='" + genre + "', " +
-                "\n" +
-                " price='" + price + "', " +
-                "\n" +
-                " downloads=" + downloads +
-                "\n" +
-                " averageCompletionTime=" + averageCompletionTime +
-                "\n" +
-                " description=" + description +
-                "\n" +
-                "}";
+        return "{" + "\n" + " gameId='" + gameId + "', " + "\n" + " devId='" + devId + "', " + "\n" + " name='" + name + "', " + "\n" + " genre='" + genre + "', " + "\n" + " price='" + price + "', " + "\n" + " downloads=" + downloads + "\n" + " averageCompletionTime=" + averageCompletionTime + "\n" + " description=" + description + "\n" + "}";
     }
 
     public String toCSV() {
-        return gameId + "," +
-                "\n" + devId + "," +
-                "\n" + gameName + "," +
-                "\n" + devName + "," +
-                "\n" + genre + "," +
-                "\n" + price + "," +
-                "\n" + downloads + "," +
-                "\n" + averageCompletionTime + "," +
-                "\n" + description;
+        return gameId + "," + "\n" + devId + "," + "\n" + name + "," + "\n" + genre + "," + "\n" + price + "," + "\n" + downloads + "," + "\n" + averageCompletionTime + "," + "\n" + description;
     }
-    */
 
     public int getGameId() {
         return gameId;
@@ -110,12 +76,8 @@ public class GameData {
         return devId;
     }
 
-    public String getGameName() {
-        return gameName;
-    }
-
-    public String getDeveloperName() {
-        return devName;
+    public String getName() {
+        return name;
     }
 
     public String getGenre() {

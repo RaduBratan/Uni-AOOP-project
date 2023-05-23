@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,17 +35,16 @@ public class GameDatabase {
 
     public void update(GameData game) {
         try {
-            String query = "UPDATE Games SET gameName = ?, devName = ?, genre = ?, price = ?, downloads = ?, averageCompletionTime = ?, description = ? WHERE gameId = ? AND devId = ?";
+            String query = "UPDATE Games SET name = ?, genre = ?, price = ?, downloads = ?, averageCompletionTime = ?, description = ? WHERE gameId = ? AND devId = ?";
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, game.getGameName());
-            statement.setString(2, game.getDeveloperName());
-            statement.setString(3, game.getGenre());
-            statement.setString(4, game.getPrice());
-            statement.setString(5, game.getDownloads());
-            statement.setString(6, game.getAverageCompletionTime());
-            statement.setString(7, game.getDescription());
-            statement.setInt(8, game.getGameId());
-            statement.setInt(9, game.getDeveloperId());
+            statement.setString(1, game.getName());
+            statement.setString(2, game.getGenre());
+            statement.setString(3, game.getPrice());
+            statement.setString(4, game.getDownloads());
+            statement.setString(5, game.getAverageCompletionTime());
+            statement.setString(6, game.getDescription());
+            statement.setInt(7, game.getGameId());
+            statement.setInt(8, game.getDeveloperId());
             statement.executeUpdate();
             statement.close();
         } catch (Exception e) {
@@ -56,17 +54,16 @@ public class GameDatabase {
 
     public void create(GameData game) {
         try {
-            String query = "INSERT INTO Games (gameId, devId, gameName, devName, genre, price, downloads, averageCompletionTime, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO Games (gameId, devId, name, genre, price, downloads, averageCompletionTime, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, game.getGameId());
             statement.setInt(2, game.getDeveloperId());
-            statement.setString(3, game.getGameName());
-            statement.setString(4, game.getDeveloperName());
-            statement.setString(5, game.getGenre());
-            statement.setString(6, game.getPrice());
-            statement.setString(7, game.getDownloads());
-            statement.setString(8, game.getAverageCompletionTime());
-            statement.setString(9, game.getDescription());
+            statement.setString(3, game.getName());
+            statement.setString(4, game.getGenre());
+            statement.setString(5, game.getPrice());
+            statement.setString(6, game.getDownloads());
+            statement.setString(7, game.getAverageCompletionTime());
+            statement.setString(8, game.getDescription());
             statement.execute();
             statement.close();
         } catch (Exception e) {

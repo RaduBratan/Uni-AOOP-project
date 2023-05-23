@@ -7,17 +7,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReviewObject {
-    private static ReviewObject instance = null;
+public class ReviewSingleton {
+    private static ReviewSingleton instance = null;
     final private ReviewFactory factory = new ReviewFactory();
-    private List<ReviewData> reviews = new ArrayList<ReviewData>();
+    private List<ReviewData> reviews = new ArrayList<>();
 
-    public static ReviewObject getInstance() {
+    public static ReviewSingleton getInstance() {
         if (instance == null)
-            instance = new ReviewObject();
+            instance = new ReviewSingleton();
         return instance;
     }
 
+    /*
     public List<ReviewData> getReviews() {
         return reviews;
     }
@@ -25,12 +26,13 @@ public class ReviewObject {
     public void setReviews(List<ReviewData> reviews) {
         this.reviews = reviews;
     }
+    */
 
     private static List<String[]> getCSVColumns(String fileName) {
         List<String[]> columns = new ArrayList<>();
-        try (var in = new BufferedReader(new FileReader(fileName))) {
+        try (var reader = new BufferedReader(new FileReader(fileName))) {
             String line;
-            while ((line = in.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 String[] fields = line.replaceAll(" ", "").split(",");
                 columns.add(fields);
             }
@@ -41,7 +43,7 @@ public class ReviewObject {
     }
 
     public void readFromCSV() {
-        var columns = ReviewObject.getCSVColumns("data/reviews.csv");
+        var columns = ReviewSingleton.getCSVColumns("data/reviews.csv");
         for (var fields : columns) {
             var newReview = new ReviewData(
                     Integer.parseInt(fields[0]),

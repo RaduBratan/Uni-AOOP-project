@@ -9,17 +9,18 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserObject {
-    private static UserObject instance = null;
+public class UserSingleton {
+    private static UserSingleton instance = null;
     final private UserFactory factory = new UserFactory();
-    private List<UserData> users = new ArrayList<UserData>();
+    private List<UserData> users = new ArrayList<>();
 
-    public static UserObject getInstance() {
+    public static UserSingleton getInstance() {
         if (instance == null)
-            instance = new UserObject();
+            instance = new UserSingleton();
         return instance;
     }
 
+    /*
     public List<UserData> getUsers() {
         return users;
     }
@@ -27,12 +28,13 @@ public class UserObject {
     public void setUsers(List<UserData> users) {
         this.users = users;
     }
+    */
 
     private static List<String[]> getCSVColumns(String fileName) {
         List<String[]> columns = new ArrayList<>();
-        try (var in = new BufferedReader(new FileReader(fileName))) {
+        try (var reader = new BufferedReader(new FileReader(fileName))) {
             String line;
-            while ((line = in.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 String[] fields = line.replaceAll(" ", "").split(",");
                 columns.add(fields);
             }
@@ -44,7 +46,7 @@ public class UserObject {
 
     public void readFromCSV() {
         try {
-            var columns = UserObject.getCSVColumns("data/users.csv");
+            var columns = UserSingleton.getCSVColumns("data/users.csv");
             for (var fields : columns) {
                 var newUser = new UserData(
                         Integer.parseInt(fields[0]),
@@ -52,7 +54,7 @@ public class UserObject {
                         fields[2],
                         fields[3],
                         fields[4],
-                        new SimpleDateFormat("yyyy-mm-dd").parse(fields[5])
+                        new SimpleDateFormat("yyyy-MM-dd").parse(fields[5])
                 );
                 users.add(newUser);
             }

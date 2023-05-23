@@ -4,22 +4,21 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameObject {
-    private static GameObject instance = null;
+public class GameSingleton {
+    private static GameSingleton instance = null;
     final private GameFactory factory = new GameFactory();
-    private List<GameData> games = new ArrayList<GameData>();
+    private List<GameData> games = new ArrayList<>();
 
-    public static GameObject getInstance() {
+    public static GameSingleton getInstance() {
         if (instance == null)
-            instance = new GameObject();
+            instance = new GameSingleton();
         return instance;
     }
 
+    /*
     public List<GameData> getGames() {
         return games;
     }
@@ -27,12 +26,13 @@ public class GameObject {
     public void setGames(List<GameData> games) {
         this.games = games;
     }
+    */
 
     private static List<String[]> getCSVColumns(String fileName) {
         List<String[]> columns = new ArrayList<>();
-        try (var in = new BufferedReader(new FileReader(fileName))) {
+        try (var reader = new BufferedReader(new FileReader(fileName))) {
             String line;
-            while ((line = in.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 String[] fields = line.replaceAll(" ", "").split(",");
                 columns.add(fields);
             }
@@ -43,7 +43,7 @@ public class GameObject {
     }
 
     public void readFromCSV() {
-        var columns = GameObject.getCSVColumns("data/games.csv");
+        var columns = GameSingleton.getCSVColumns("data/games.csv");
         for (var fields : columns) {
             var newGame = new GameData(
                     Integer.parseInt(fields[0]),
@@ -53,8 +53,7 @@ public class GameObject {
                     fields[4],
                     fields[5],
                     fields[6],
-                    fields[7],
-                    fields[8]
+                    fields[7]
             );
             games.add(newGame);
         }

@@ -21,7 +21,7 @@ public class CSVService {
         try {
             this.writer = new FileWriter("metadata/audit.csv");
         } catch (IOException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
     }
 }

@@ -1,5 +1,7 @@
 import Entities.DeveloperDatabase;
 import Entities.UserDatabase;
+import Entities.GameDatabase;
+import Entities.ReviewDatabase;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

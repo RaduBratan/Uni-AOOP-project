@@ -17,86 +17,75 @@ public class AddressData {
         this.postalCode = postalCode;
     }
 
-    public AddressData(Scanner in) {
-        this.read(in);
+    public AddressData(Scanner scanner) {
+        this.read(scanner);
     }
 
-    public AddressData(ResultSet in) throws SQLException {
-        this.read(in);
+    public AddressData(ResultSet result) throws SQLException {
+        this.read(result);
     }
 
-    public void read(Scanner in) {
+    public void read(Scanner scanner) {
         System.out.println("Țara: ");
-        this.state = in.nextLine();
+        this.state = scanner.nextLine();
         System.out.println("Județul: ");
-        this.county = in.nextLine();
+        this.county = scanner.nextLine();
         System.out.println("Municipiul / Sectorul: ");
-        this.city = in.nextLine();
+        this.city = scanner.nextLine();
         System.out.println("Strada: ");
-        this.street = in.nextLine();
+        this.street = scanner.nextLine();
         System.out.println("Codul poștal: ");
-        this.postalCode = Integer.parseInt(in.nextLine());
+        this.postalCode = Integer.parseInt(scanner.nextLine());
     }
 
-    public void read(ResultSet in) throws SQLException {
-        this.state = in.getString("state");
-        this.county = in.getString("county");
-        this.city = in.getString("city");
-        this.street = in.getString("street");
-        this.postalCode = in.getInt("postalCode");
+    public void read(ResultSet result) throws SQLException {
+        this.state = result.getString("state");
+        this.county = result.getString("county");
+        this.city = result.getString("city");
+        this.street = result.getString("street");
+        this.postalCode = result.getInt("postalCode");
     }
 
     @Override
     public String toString() {
-        return "{" +
-                "\n" +
-                " state='" + state + "', " +
-                "\n" +
-                " county='" + county + "', " +
-                "\n" +
-                " city='" + city + "', " +
-                "\n" +
-                " street='" + street + "', " +
-                "\n" +
-                " postalCode=" + postalCode +
-                "\n" +
-                "}";
+        return "{" + "\n" + " state='" + state + "', " + "\n" + " county='" + county + "', " + "\n" + " city='" + city + "', " + "\n" + " street='" + street + "', " + "\n" + " postalCode=" + postalCode + "\n" + "}";
     }
 
     public String toCSV() {
-        return state + "," +
-                "\n" + county + "," +
-                "\n" + city + "," +
-                "\n" + street + "," +
-                "\n" + postalCode;
+        return state + "," + "\n" + county + "," + "\n" + city + "," + "\n" + street + "," + "\n" + postalCode;
     }
 
     public String getState() {
         return state;
     }
 
-    public void setState(String state) {
-        this.state = state;
-    }
-
     public String getCounty() {
         return county;
-    }
-
-    public void setCounty(String county) {
-        this.county = county;
     }
 
     public String getCity() {
         return city;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public String getStreet() {
         return street;
+    }
+
+    public int getPostalCode() {
+        return postalCode;
+    }
+
+    /*
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public void setCounty(String county) {
+        this.county = county;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public void setStreet(String street) {
@@ -106,8 +95,5 @@ public class AddressData {
     public void setPostalCode(int postalCode) {
         this.postalCode = postalCode;
     }
-
-    public int getPostalCode() {
-        return postalCode;
-    }
+    */
 }

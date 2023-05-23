@@ -12,11 +12,11 @@ public class UserFactory {
         UserFactory.uniqueUserId += i;
     }
 
-    public UserData createUser(Scanner in) throws ParseException {
-        return new UserData(uniqueUserId++, in);
+    public UserData createUser(Scanner scanner) throws ParseException {
+        return new UserData(uniqueUserId++, scanner);
     }
 
-    public UserData createUser(ResultSet in) throws SQLException {
-        return new UserData(uniqueUserId++, in);
+    public UserData createUser(ResultSet result) throws SQLException {
+        return new UserData(uniqueUserId++, result);
     }
 }

@@ -24,6 +24,7 @@ public class MainService {
     private GameDatabase gameDatabase = null;
     private ReviewDatabase reviewDatabase = null;
 
+    /*
     public List<DeveloperData> getDevelopers() {
         return developers;
     }
@@ -55,6 +56,7 @@ public class MainService {
     public void setReviews(List<ReviewData> reviews) {
         this.reviews = reviews;
     }
+    */
 
     public MainService(DeveloperDatabase developerDatabase, UserDatabase userDatabase, GameDatabase gameDatabase, ReviewDatabase reviewDatabase) {
         this.developerDatabase = developerDatabase;
@@ -69,8 +71,8 @@ public class MainService {
     }
 
     // ------------ functions included in Main for creating and getting developers
-    public void createDeveloper(Scanner in) throws ParseException {
-        DeveloperData newDeveloper = developerFactory.createDeveloper(in);
+    public void createDeveloper(Scanner scanner) throws ParseException {
+        DeveloperData newDeveloper = developerFactory.createDeveloper(scanner);
         this.developers.add(newDeveloper);
         // newDeveloper = developerFactory.createDeveloper(newDeveloper.getName(), newDeveloper.getEmail(), newDeveloper.getPassword(), newDeveloper.getCNP(), newDeveloper.getPhone(), newDeveloper.getBirthDate(), newDeveloper.getAddress());
         if (this.developerDatabase != null)
@@ -78,95 +80,97 @@ public class MainService {
         System.out.println("Contul de dezvoltator a fost creat");
     }
 
-    private DeveloperData getDeveloperFromId(Scanner in) throws Exception {
+    private DeveloperData getDeveloperFromId(Scanner scanner) throws Exception {
         if (this.developers.size() == 0)
             throw new Exception("Nu există dezvoltatori");
         if (this.developers.size() == 1)
             return developers.get(0);
         System.out.println("ID-ul dezvoltatorului între 0 și " + (this.developers.size() - 1) + ": ");
-        int developerId = Integer.parseInt(in.nextLine());
+        int developerId = Integer.parseInt(scanner.nextLine());
         if (developerId > this.developers.size())
             throw new Exception("Nu există dezvoltatorul cu acest ID");
         return developers.get(developerId);
     }
 
-    public void showDeveloper(Scanner in) throws Exception {
-        var developer = this.getDeveloperFromId(in);
+    public void showDeveloper(Scanner scanner) throws Exception {
+        var developer = this.getDeveloperFromId(scanner);
         System.out.println(developer.toString());
     }
 
     // ------------ functions included in Main for creating and getting users
-    public void createUser(Scanner in) throws ParseException {
-        UserData newUser = userFactory.createUser(in);
+    public void createUser(Scanner scanner) throws ParseException {
+        UserData newUser = userFactory.createUser(scanner);
         this.users.add(newUser);
         if (this.userDatabase != null)
             this.userDatabase.create(newUser);
         System.out.println("Contul de utilizator a fost creat");
     }
 
-    private UserData getUserFromId(Scanner in) throws Exception {
+    private UserData getUserFromId(Scanner scanner) throws Exception {
         if (this.users.size() == 0)
             throw new Exception("Nu există utilizatori");
         if (this.users.size() == 1)
             return users.get(0);
         System.out.println("ID-ul utilizatorului între 0 și " + (this.users.size() - 1) + ": ");
-        int userId = Integer.parseInt(in.nextLine());
+        int userId = Integer.parseInt(scanner.nextLine());
         if (userId > this.users.size())
             throw new Exception("Nu există utilizatorul cu acest ID");
         return users.get(userId);
     }
 
-    public void showUser(Scanner in) throws Exception {
-        var user = this.getUserFromId(in);
+    public void showUser(Scanner scanner) throws Exception {
+        var user = this.getUserFromId(scanner);
         System.out.println(user.toString());
     }
 
     // ------------ functions included in Main for creating, getting and removing games
-    public void addGame(Scanner in) throws Exception {
-        var developer = this.getDeveloperFromId(in);
+    public void addGame(Scanner scanner) throws Exception {
+        /*
         System.out.println("Numele jocului: ");
-        String gameName = in.nextLine();
+        String gameName = scanner.nextLine();
         System.out.println("Numele dezvoltatorului: ");
-        String devName = in.nextLine();
+        String devName = scanner.nextLine();
         System.out.println("Genul jocului: ");
-        String genre = in.nextLine();
+        String genre = scanner.nextLine();
         System.out.println("Prețul jocului: ");
-        String price = in.nextLine();
+        String price = scanner.nextLine();
         System.out.println("Numărul de descărcări: ");
-        String downloads = in.nextLine();
+        String downloads = scanner.nextLine();
         System.out.println("Timpul mediu de completare: ");
-        String averageCompletionTime = in.nextLine();
+        String averageCompletionTime = scanner.nextLine();
         System.out.println("Scurtă descriere: ");
-        String description = in.nextLine();
+        String description = scanner.nextLine();
         GameData newGame = this.gameFactory.addGame(developer.getDeveloperId(), gameName, devName, genre, price, downloads, averageCompletionTime, description);
-        games.add(newGame);
+        */
+        GameData newGame = gameFactory.addGame(scanner);
+        this.games.add(newGame);
         if (this.gameDatabase != null)
             this.gameDatabase.create(newGame);
         System.out.println("Jocul a fost adăugat");
     }
 
-    private GameData getGameFromId(Scanner in) throws Exception {
+    private GameData getGameFromId(Scanner scanner) throws Exception {
         if (this.games.size() == 0)
             throw new Exception("Nu există jocuri");
         if (this.games.size() == 1)
             return games.get(0);
         System.out.println("ID-ul jocului între 0 și " + (this.games.size() - 1) + ": ");
-        int gameId = Integer.parseInt(in.nextLine());
+        int gameId = Integer.parseInt(scanner.nextLine());
         if (gameId > this.games.size())
             throw new Exception("Nu există jocul cu acest ID");
         return games.get(gameId);
     }
 
-    public void showGame(Scanner in) throws Exception {
-        var game = this.getGameFromId(in);
+    public void showGame(Scanner scanner) throws Exception {
+        var game = this.getGameFromId(scanner);
         System.out.println(game.toString());
     }
 
-    private GameData getGameFromDev(Scanner in, DeveloperData developer) throws Exception {
+    private GameData getGameFromDev(Scanner scanner, DeveloperData developer) throws Exception {
         List<GameData> devGames = developer.filterGames(this.games);
         System.out.println("Jocurile dezvoltatorului: " + devGames);
         System.out.println("Alege numele jocului: ");
-        var gameName = in.nextLine();
+        var gameName = scanner.nextLine();
         if (!this.gamesMap.containsKey(gameName))
             throw new Exception("Acesta nu este un nume valid");
         var game = gamesMap.get(gameName);
@@ -175,12 +179,12 @@ public class MainService {
         return game;
     }
 
-    public void removeGame(Scanner in) throws Exception {
-        var developer = this.getDeveloperFromId(in);
-        var game = this.getGameFromDev(in, developer);
+    public void removeGame(Scanner scanner) throws Exception {
+        var developer = this.getDeveloperFromId(scanner);
+        var game = this.getGameFromDev(scanner, developer);
         if (developer.filterGames(this.games).size() <= 1)
             throw new Exception("Acest dezvoltator nu are jocuri");
-        this.gamesMap.remove(game.getGameName());
+        this.gamesMap.remove(game.getName());
         this.games.remove(game);
         if (this.gameDatabase != null)
             this.gameDatabase.delete(game);
@@ -188,40 +192,43 @@ public class MainService {
     }
 
     // ------------ functions included in Main for creating, getting and removing reviews
-    public void addReview(Scanner in) throws Exception {
-        var user = this.getUserFromId(in);
-        var game = this.getGameFromId(in);
+    public void addReview(Scanner scanner) throws Exception {
+        /*
+        var user = this.getUserFromId(scanner);
+        var game = this.getGameFromId(scanner);
         System.out.println("Recenzia ta: ");
-        String reviewText = in.nextLine();
+        String reviewText = scanner.nextLine();
         ReviewData newReview = this.reviewFactory.addReview(user.getUserId(), game.getGameId(), reviewText);
-        reviews.add(newReview);
+        */
+        ReviewData newReview = this.reviewFactory.addReview(scanner);
+        this.reviews.add(newReview);
         if (this.reviewDatabase != null)
             this.reviewDatabase.create(newReview);
         System.out.println("Recenzia a fost adăugată");
     }
 
-    private ReviewData getReviewFromId(Scanner in) throws Exception {
+    private ReviewData getReviewFromId(Scanner scanner) throws Exception {
         if (this.reviews.size() == 0)
             throw new Exception("Nu există recenzii");
         if (this.reviews.size() == 1)
             return reviews.get(0);
         System.out.println("ID-ul recenziei între 0 și " + (this.reviews.size() - 1) + ": ");
-        int reviewId = Integer.parseInt(in.nextLine());
+        int reviewId = Integer.parseInt(scanner.nextLine());
         if (reviewId > this.reviews.size())
             throw new Exception("Nu există recenzia cu acest ID");
         return reviews.get(reviewId);
     }
 
-    public void showReview(Scanner in) throws Exception {
-        var review = this.getReviewFromId(in);
+    public void showReview(Scanner scanner) throws Exception {
+        var review = this.getReviewFromId(scanner);
         System.out.println(review.toString());
     }
 
-    private ReviewData getReviewFromUser(Scanner in, UserData user) throws Exception {
+    private ReviewData getReviewFromUser(Scanner scanner, UserData user) throws Exception {
         List<ReviewData> devReviews = user.filterReviews(this.reviews);
         System.out.println("Recenziile utilizatorului: " + devReviews);
         System.out.println("Alege ID-ul recenziei: ");
-        var reviewId = Integer.parseInt(in.nextLine());
+        var reviewId = Integer.parseInt(scanner.nextLine());
         if (!this.reviewsMap.containsKey(reviewId))
             throw new Exception("Acesta nu este o recenzie validă");
         var review = reviewsMap.get(reviewId);
@@ -230,9 +237,9 @@ public class MainService {
         return review;
     }
 
-    public void removeReview(Scanner in) throws Exception {
-        var user = this.getUserFromId(in);
-        var review = this.getReviewFromUser(in, user);
+    public void removeReview(Scanner scanner) throws Exception {
+        var user = this.getUserFromId(scanner);
+        var review = this.getReviewFromUser(scanner, user);
         if (user.filterReviews(this.reviews).size() <= 1)
             throw new Exception("Acest utilizator nu are recenzii");
         this.reviewsMap.remove(review.getReviewId());
@@ -244,15 +251,15 @@ public class MainService {
 }
 
 /*
-    public void enterDeveloper(Scanner in) throws Exception {
+    public void enterDeveloper(Scanner scanner) throws Exception {
         if (this.developers.size() == 0)
             throw new Exception("Nu există dezvoltatori");
         if (this.developers.size() == 1)
             return developers.get(0);
         System.out.println("ID-ul dezvoltatorului [0-" + (this.developers.size() - 1) + "]: ");
-        int developerId = Integer.parseInt(in.nextLine());
+        int developerId = Integer.parseInt(scanner.nextLine());
         System.out.println("Parola dezvoltatorului:");
-        String developerPassword = in.nextLine();
+        String developerPassword = scanner.nextLine();
         if(new DeveloperData().comparePasswords(developerId, developerPassword))
             return developers.get(developerId);
     }

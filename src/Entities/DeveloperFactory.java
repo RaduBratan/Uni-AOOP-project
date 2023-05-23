@@ -3,7 +3,7 @@ package Entities;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.Date;
+// import java.util.Date;
 import java.util.Scanner;
 
 public class DeveloperFactory {
@@ -13,12 +13,12 @@ public class DeveloperFactory {
         DeveloperFactory.uniqueDevId += i;
     }
 
-    public DeveloperData createDeveloper(Scanner in) throws ParseException {
-        return new DeveloperData(uniqueDevId++, in);
+    public DeveloperData createDeveloper(Scanner scanner) throws ParseException {
+        return new DeveloperData(uniqueDevId++, scanner);
     }
 
-    public DeveloperData createDeveloper(ResultSet in) throws SQLException {
-        return new DeveloperData(uniqueDevId++, in);
+    public DeveloperData createDeveloper(ResultSet result) throws SQLException {
+        return new DeveloperData(uniqueDevId++, result);
     }
 
     /*
