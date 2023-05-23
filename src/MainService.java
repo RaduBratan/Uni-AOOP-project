@@ -249,18 +249,3 @@ public class MainService {
         System.out.println("Recenzia ofensivă a fost eliminată");
     }
 }
-
-/*
-    public void enterDeveloper(Scanner scanner) throws Exception {
-        if (this.developers.size() == 0)
-            throw new Exception("Nu există dezvoltatori");
-        if (this.developers.size() == 1)
-            return developers.get(0);
-        System.out.println("ID-ul dezvoltatorului [0-" + (this.developers.size() - 1) + "]: ");
-        int developerId = Integer.parseInt(scanner.nextLine());
-        System.out.println("Parola dezvoltatorului:");
-        String developerPassword = scanner.nextLine();
-        if(new DeveloperData().comparePasswords(developerId, developerPassword))
-            return developers.get(developerId);
-    }
-*/
