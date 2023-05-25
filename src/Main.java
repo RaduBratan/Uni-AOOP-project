@@ -50,9 +50,9 @@ public class Main {
 
     public static Connection getConnection() {
         try {
-            String url = "jdbc:mysql://localhost:3306/uni-aoop-project";
+            String url = "jdbc:mysql://localhost:3306/uniaoopproject";
             String user = "root";
-            String password = "123456";
+            String password = "root";
             return DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
             System.out.println(e);

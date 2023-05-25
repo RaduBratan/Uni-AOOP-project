@@ -19,7 +19,7 @@ public class CSVService {
 
     public CSVService() {
         try {
-            this.writer = new FileWriter("metadata/audit.csv");
+            this.writer = new FileWriter("data/audit.csv");
         } catch (IOException e) {
             System.out.println(e);
         }
