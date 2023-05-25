@@ -50,9 +50,9 @@ public class Main {
 
     public static Connection getConnection() {
         try {
-            String url = "";
-            String user = "";
-            String password = "";
+            String url = "jdbc:mysql://localhost:3306/uni-aoop-project";
+            String user = "root";
+            String password = "123456";
             return DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
             System.out.println(e);
@@ -61,7 +61,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         boolean finish = false;
         var connection = getConnection();
         var developerDatabase = new DeveloperDatabase(connection);
@@ -74,19 +74,19 @@ public class Main {
 
         while (!finish) {
             System.out.println("\nTastează o comandă (11 = listă comenzi)");
-            String cmd = in.nextLine().toLowerCase(Locale.ROOT);
+            String cmd = scanner.nextLine().toLowerCase(Locale.ROOT);
             try {
                 switch (cmd) {
-                    case "1" -> mainService.createDeveloper(in);
-                    case "2" -> mainService.createUser(in);
-                    case "3" -> mainService.showDeveloper(in);
-                    case "4" -> mainService.showUser(in);
-                    case "5" -> mainService.addGame(in);
-                    case "6" -> mainService.addReview(in);
-                    case "7" -> mainService.showGame(in);
-                    case "8" -> mainService.showReview(in);
-                    case "9" -> mainService.removeGame(in);
-                    case "10" -> mainService.removeReview(in);
+                    case "1" -> mainService.createDeveloper(scanner);
+                    case "2" -> mainService.createUser(scanner);
+                    case "3" -> mainService.showDeveloper(scanner);
+                    case "4" -> mainService.showUser(scanner);
+                    case "5" -> mainService.addGame(scanner);
+                    case "6" -> mainService.addReview(scanner);
+                    case "7" -> mainService.showGame(scanner);
+                    case "8" -> mainService.showReview(scanner);
+                    case "9" -> mainService.removeGame(scanner);
+                    case "10" -> mainService.removeReview(scanner);
                     case "11" -> showAllCommands();
                     case "12" -> finish = true;
                 }
@@ -95,6 +95,13 @@ public class Main {
             } catch (Exception e) {
                 System.out.println(e);
             }
+        }
+
+        try {
+            assert connection != null;
+            connection.close();
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
 }
