@@ -1,7 +1,7 @@
 ### Commands for setting up and testing the MySQL database
 
 Tutorials:<br />
-https://www.vogella.com/tutorials/MySQLJava/article.html
+https://www.vogella.com/tutorials/MySQLJava/article.html <br />
 https://www.youtube.com/watch?v=s2EGAzcdK1c
 
 Code:
