@@ -16,15 +16,15 @@ This is a project I created for my Advanced Object-Oriented Programming class at
 - remove offensive review of game
 
 #### Use at least 8 classes (I created 19):
-01. GameData
-02. GameDatabase
-03. GameFactory
-04. GameSingleton
-05. ReviewData
-06. ReviewDatabase
-07. ReviewFactory
-08. ReviewSingleton
-09. UserData
+1. GameData
+2. GameDatabase
+3. GameFactory
+4. GameSingleton
+5. ReviewData
+6. ReviewDatabase
+7. ReviewFactory
+8. ReviewSingleton
+9. UserData
 10. UserDatabase
 11. UserFactory
 12. UserSingleton
@@ -36,9 +36,17 @@ This is a project I created for my Advanced Object-Oriented Programming class at
 18. MainService
 19. Main
 
+#### Have/use:
+- simple classes with private/protected attributes
+- at least two different collections (e.g. List, Set, Map), out of which at least one of them should be sorted
+- inheritance
+- at least a Service class
+- at least a Main class
+
 ## Requirements for part 2
 
-[TODO: ADD REQUIREMENTS FOR PART 2]
+1. Use a relational database along with JDBC (with create/read/update/delete operations for at least four of the defined classes; also, singleton services should be included)
+2. Use an audit service (with .csv files)
 
 ## Documentation
 See any relevant documentation inside the source code via all the comments I wrote.
