@@ -50,3 +50,6 @@ This is a project I created for my Advanced Object-Oriented Programming class at
 
 ## Documentation
 See any relevant documentation inside the source code via all the comments I wrote.
+
+## MySQL implementation
+Check the [COMMANDS.md file](https://github.com/RaduBratan/Uni-AOOP-project/blob/part2/COMMANDS.MD).
