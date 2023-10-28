@@ -16,7 +16,6 @@ public class CSVService {
         writer.flush();
     }
 
-
     public CSVService() {
         try {
             this.writer = new FileWriter("data/audit.csv");
